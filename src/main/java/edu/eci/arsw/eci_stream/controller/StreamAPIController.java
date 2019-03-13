@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,9 +21,14 @@ import org.springframework.web.bind.annotation.RequestParam;
  * StreamAPIController
  */
 @RestController
-@RequestMapping
+@RequestMapping("/api")
 public class StreamAPIController {
     Services ss = new Services();
+    
+    @GetMapping
+    public String welcome() {
+    	return "<h1>Welcome to demo page</h1>";
+    }
 
     @RequestMapping(value="/users", method=RequestMethod.GET)
     public ResponseEntity<?> requestMethodName() {
