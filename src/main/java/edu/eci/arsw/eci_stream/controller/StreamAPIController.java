@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * StreamAPIController
  */
 @RestController
+@RequestMapping
 public class StreamAPIController {
     Services ss = new Services();
 
@@ -36,7 +37,7 @@ public class StreamAPIController {
     @RequestMapping(value="/users/{userID}", method=RequestMethod.GET)
     public ResponseEntity<?> requestMethodName(@RequestParam String User) {
         try{
-            return new ResponseEntity<>(ss.consultUsers(), HttpStatus.ACCEPTED)
+            return new ResponseEntity<>(ss.consultUsers(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
