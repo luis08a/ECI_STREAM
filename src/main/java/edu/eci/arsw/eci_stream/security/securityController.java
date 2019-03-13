@@ -1,4 +1,4 @@
-package security;
+package edu.eci.arsw.eci_stream.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

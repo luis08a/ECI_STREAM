@@ -3,15 +3,17 @@ package edu.eci.arsw.eci_stream.model.entities;
 public class User {
     private String name;
     private String email;
-    private String pass; 
+    private String password; 
     
     public User(String name, String email,String pass){
         this.name=name;
         this.email=email; 
-        this.pass=pass;
+        this.password=pass;
     }
 
-    /**
+    public User() {}
+
+	/**
      * @return the name
      */
     public String getName() {
@@ -39,12 +41,16 @@ public class User {
         this.name = name;
     }
 
-	public String getPass() {
-		return pass;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setPassword(String pass) {
+		password = pass;
+	}
+
+	public Object getPasswordConfirm() {
+		return password;
 	}
     
 }

@@ -15,14 +15,7 @@ import edu.eci.arsw.eci_stream.persistence.StreamPersistence;
 @Service
 public class InMemoryPersistence implements StreamPersistence {
 	
-	private List<User> mockUsers = new ArrayList<User>();
-	public void InMemoryPersistnace() {
-		User u1 = new User("user1","user1@mail.com","porcifrar1");
-		User u2 = new User("user2","user2@mail.com","porcifrar2");
-		mockUsers.add(u2);
-		mockUsers.add(u1);
-		
-	}
+	
     @Override
     public List<User> getUsers() {
         return null;
