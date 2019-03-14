@@ -1,5 +1,7 @@
 package edu.eci.arsw.eci_stream.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class User {
     private String name;
     private String email;
@@ -44,11 +46,11 @@ public class User {
 	public String getPassword() {
 		return password;
 	}
-
+    
 	public void setPassword(String pass) {
 		password = pass;
 	}
-
+    
 	public Object getPasswordConfirm() {
 		return password;
 	}

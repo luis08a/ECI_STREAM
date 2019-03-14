@@ -10,11 +10,13 @@ import edu.eci.arsw.eci_stream.model.entities.User;
  */
 public interface StreamPersistence {
 
-    public List<User> getUsers();
+    public List<User> getUsers() throws PersistenceException;
 
-    public void registerUser(User u, String password);
+    public User getUserByName(String userName) throws PersistenceException;
 
-    public List<Room> getRooms();
+    public void registerUser(User u, String password) throws PersistenceException;
+
+    public List<Room> getRooms() throws PersistenceException;
 
     //public void createARoom(User u, String title);
 }
