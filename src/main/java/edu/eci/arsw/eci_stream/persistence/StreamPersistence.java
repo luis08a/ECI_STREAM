@@ -3,6 +3,7 @@ package edu.eci.arsw.eci_stream.persistence;
 import java.util.List;
 
 import edu.eci.arsw.eci_stream.model.entities.Room;
+import edu.eci.arsw.eci_stream.model.entities.RoomInfo;
 import edu.eci.arsw.eci_stream.model.entities.User;
 
 /**
@@ -18,5 +19,7 @@ public interface StreamPersistence {
 
     public List<Room> getRooms() throws PersistenceException;
 
-    //public void createARoom(User u, String title);
+    public Room getRoomById(Long id) throws PersistenceException;
+
+    public void createARoom(User user, RoomInfo information) throws PersistenceException;
 }

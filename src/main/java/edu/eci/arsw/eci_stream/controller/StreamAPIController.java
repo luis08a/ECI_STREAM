@@ -6,9 +6,11 @@ import edu.eci.arsw.eci_stream.model.entities.User;
 import edu.eci.arsw.eci_stream.persistence.PersistenceException;
 import edu.eci.arsw.eci_stream.services.Services;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
@@ -25,7 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 @RequestMapping("/api")
 public class StreamAPIController {
-    Services ss = new Services();
+    @Autowired
+    Services ss;
     
     @GetMapping
     public String welcome() {
@@ -52,6 +54,37 @@ public class StreamAPIController {
         } 
     }
     
+    @RequestMapping(value="/rooms", method=RequestMethod.GET)
+    public ResponseEntity<?> consultRooms() {
+        try{
+            return new ResponseEntity<>(ss.getAllRooms(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
+        } 
+    }
+
+    @RequestMapping(value="/rooms/{id}", method=RequestMethod.GET)
+    public ResponseEntity<?> consultRoomByID(@PathVariable Long id) {
+        try{
+            return new ResponseEntity<>(ss.getRoomById(id), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
+        } 
+    }
+
+    @RequestMapping(value="/rooms/{id}/users", method=RequestMethod.GET)
+    public ResponseEntity<?> consultUsersInASpecificRoom(@PathVariable Long id) {
+        try{
+            List<User> data = ss.getUsersByRoom(id);
+            return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
+        } 
+    }
+
     @RequestMapping(value="/users", method=RequestMethod.POST)
     public ResponseEntity<?> LogIn(@RequestBody User o) {
         try{
@@ -60,7 +93,6 @@ public class StreamAPIController {
         } catch (Exception ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Refussed",HttpStatus.FORBIDDEN);            
-        }     }
-    
-    
+        }     
+    }
 }
