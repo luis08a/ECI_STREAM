@@ -28,7 +28,7 @@ public class MockPersistence implements StreamPersistence {
         mockUsers.put(u1.getName(), u1);
         mockUsers.put(u2.getName(), u2);
 
-        Room r1 = new Room((long) 1, u1, new RoomInfo());
+        Room r1 = new Room((long) 1, u1, new RoomInfo("","",null,null));
         mockRooms.put((long) 1, r1);
     }
 

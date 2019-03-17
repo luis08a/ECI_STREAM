@@ -2,6 +2,7 @@ package edu.eci.arsw.eci_stream.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.eci.arsw.eci_stream.model.entities.RoomInfo;
 import edu.eci.arsw.eci_stream.model.entities.User;
 import edu.eci.arsw.eci_stream.persistence.PersistenceException;
 import edu.eci.arsw.eci_stream.services.Services;
@@ -29,6 +30,8 @@ public class StreamAPIController {
     @Autowired
     Services ss;
     
+    // Get request
+
     @GetMapping
     public String welcome() {
     	return "<h1>Welcome to demo page</h1>";
@@ -85,6 +88,8 @@ public class StreamAPIController {
         } 
     }
 
+    // Post request
+
     @RequestMapping(value="/users", method=RequestMethod.POST)
     public ResponseEntity<?> LogIn(@RequestBody User o) {
         try{
@@ -93,6 +98,17 @@ public class StreamAPIController {
         } catch (Exception ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Refussed",HttpStatus.FORBIDDEN);            
+        }     
+    }
+
+    @RequestMapping(value="/rooms", method=RequestMethod.POST)
+    public ResponseEntity<?> createARoom(@RequestBody User u, @RequestBody RoomInfo i) {
+        try{
+            ss.createRoom(u, i);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Refused to create the room. Invalid information",HttpStatus.FORBIDDEN);            
         }     
     }
 }
