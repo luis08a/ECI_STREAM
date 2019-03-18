@@ -1,0 +1,10 @@
+.form-horizontal {
+    background: gainsboro;
+    border-radius: 20px;
+    padding: 10px;
+    padding-top: 20px;
+}
+
+.login {    
+    transform: translateY(60%);    
+}
