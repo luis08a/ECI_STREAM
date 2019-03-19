@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -85,7 +86,7 @@ public class StreamAPIController {
 
     // Post request
 
-    @RequestMapping(value="/users", method=RequestMethod.POST)
+    @RequestMapping(value="/users", method=RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<?> LogIn(@RequestBody User o) {
         System.out.println("entro: " + o.toString());
         try{

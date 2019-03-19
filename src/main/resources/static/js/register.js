@@ -13,27 +13,20 @@ $(document).ready(function() {
         var emailF = document.getElementById('email').value;
         var passwordF = document.getElementById('password').value;
         
+        var user = { name : nameF, email : emailF, password : passwordF };
+        
         //alert('Email: ' + emailF + ' Password: ' + passwordF);
         
-        $.post('/api/users',
-        {
-            name : nameF,
-            email : emailF,
-            password : passwordF
-        },
-        function(data, status){
-            alert("Data: " + data + "\nStatus: " + status);
-        }, "json");
-        
-        /*$.ajax({
-            type: "POST",
-            url: "/api/users",           
-            user : { "name" : nameF, "email" : emailF, "password" : passwordF }
-            ,
-            success: function(user) {
-                console.log('done');
-            }
-        });*/
+        $.ajax({
+            url: '/api/users',
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                console.log('done, ' + data);
+            },
+            data: JSON.stringify(user)
+        });                
         
         console.log("termino");
     });
