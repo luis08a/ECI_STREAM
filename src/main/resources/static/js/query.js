@@ -8,7 +8,7 @@ var queryModule = {
             $("#table tbdoy").append(markup)
         }
         return {
-            queryUsers: getUsers
+            queryUsers:getUsers
         }
     }
 }
