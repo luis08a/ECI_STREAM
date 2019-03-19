@@ -33,7 +33,7 @@ public class StreamAPIController {
     
     // Get request
 
-    @RequestMapping(value="/users", method=RequestMethod.GET)
+    @RequestMapping(value="/users", method=RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> consultAllUsers() {
         try {
             return new ResponseEntity<>(ss.getAllUsers(),HttpStatus.ACCEPTED);

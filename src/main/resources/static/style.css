@@ -12,3 +12,7 @@
 .register {
     transform: translateY(10%);
 }
+
+.users {
+    transform: translateY(20%);
+}
