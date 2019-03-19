@@ -56,4 +56,10 @@ In order to make a great user experience the user also will be able to follow ot
 
 [https://tree.taiga.io/project/luis08a-arsw-2019-1-eci-stream/backlog](https://tree.taiga.io/project/luis08a-arsw-2019-1-eci-stream/backlog)
 
+### Installation:
+This application needs installed:
+* Java
+* Tomcat
+* Spring 
+
   
