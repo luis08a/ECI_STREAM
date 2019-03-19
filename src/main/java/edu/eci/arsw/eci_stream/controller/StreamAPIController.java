@@ -32,11 +32,6 @@ public class StreamAPIController {
     
     // Get request
 
-    @GetMapping
-    public String welcome() {
-    	return "<h1>Welcome to demo page</h1>";
-    }
-
     @RequestMapping(value="/users", method=RequestMethod.GET)
     public ResponseEntity<?> consultAllUsers() {
         try {
@@ -92,8 +87,9 @@ public class StreamAPIController {
 
     @RequestMapping(value="/users", method=RequestMethod.POST)
     public ResponseEntity<?> LogIn(@RequestBody User o) {
+        System.out.println("entro: " + o.toString());
         try{
-            ss.createUser(o, "password");
+            ss.createUser(o, o.getPassword());
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);

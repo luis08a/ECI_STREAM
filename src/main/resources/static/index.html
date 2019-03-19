@@ -18,7 +18,8 @@
                   </a>                              
                 </div>
                 <div class="navbar-form navbar-right">
-                    <button id="loginButton" type="button" class="btn btn-default navbar-btn" onclick="login.html">Sign in</button>
+                    <button id="loginButton" type="button" class="btn btn-default navbar-btn">Sign in</button>
+                    <button id="registerButton" type="button" class="btn btn-default navbar-btn">Register</button>
                 </div>
             </div>
         </nav>
@@ -35,6 +36,9 @@
         <script type="text/javascript">
             document.getElementById("loginButton").onclick = function () {
                 location.href = "login.html";
+            };
+            document.getElementById("registerButton").onclick = function () {
+                location.href = "register.html";
             };
         </script>
     </body>

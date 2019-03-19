@@ -4,4 +4,26 @@
  * and open the template in the editor.
  */
 
+$(document).ready(function() {
+
+    $('#SignIn').click(function(){
+        
+        var email = document.getElementById('inputEmail').value;
+        var password = document.getElementById('inputPassword').value;
+        
+        alert('Email: ' + email + ' Password: ' + password);
+        
+        $.post('/api/users',
+        {
+            user : {
+                email : email,
+                password : password
+            }
+        },
+        function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+});
+
 

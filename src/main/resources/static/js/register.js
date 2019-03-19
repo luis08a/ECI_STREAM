@@ -1,0 +1,40 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+$(document).ready(function() {
+
+    $('#Register').click(function(){
+        
+        var nameF = document.getElementById('name').value;
+        var emailF = document.getElementById('email').value;
+        var passwordF = document.getElementById('password').value;
+        
+        //alert('Email: ' + emailF + ' Password: ' + passwordF);
+        
+        $.post('/api/users',
+        {
+            name : nameF,
+            email : emailF,
+            password : passwordF
+        },
+        function(data, status){
+            alert("Data: " + data + "\nStatus: " + status);
+        }, "json");
+        
+        /*$.ajax({
+            type: "POST",
+            url: "/api/users",           
+            user : { "name" : nameF, "email" : emailF, "password" : passwordF }
+            ,
+            success: function(user) {
+                console.log('done');
+            }
+        });*/
+        
+        console.log("termino");
+    });
+});
