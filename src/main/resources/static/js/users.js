@@ -4,18 +4,24 @@
  * and open the template in the editor.
  */
 
-$(document).ready(function () {
+function info() {
     $.getJSON('api/users', function (data) {
-        console.log(data);
+        //console.log(data);
+        var res = "";
         jQuery.each(data, function (i ,val) {
             var n = "<td>"+val.name+"</td>";
             var e = "<td>"+val.email+"</td>";
             var p = "<td>"+val.password+"</td>";
             var markup = "<tr>"+n+e+p+"</tr>";
             
-            $("table tbody").append(markup);            
+            res += markup;
+            
+            //$("table tbody").append(markup);
         });
-    });
-    
-    
+        document.getElementById("data").innerHTML = res;
+        setTimeout(info,1000);
+    })};
+
+$(document).ready(function() {
+    info();
 });

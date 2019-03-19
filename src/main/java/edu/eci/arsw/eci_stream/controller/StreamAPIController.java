@@ -87,8 +87,7 @@ public class StreamAPIController {
     // Post request
 
     @RequestMapping(value="/users", method=RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<?> LogIn(@RequestBody User o) {
-        System.out.println("entro: " + o.toString());
+    public ResponseEntity<?> LogIn(@RequestBody User o) {       
         try{
             ss.createUser(o, o.getPassword());
             return new ResponseEntity<>(HttpStatus.CREATED);
