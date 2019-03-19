@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Main Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script src="/webjars/jquery/jquery.min.js"></script>
+        <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/js/lobby.js"></script>
+        <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="style.css" type="text/css">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand img" href="#">
+                                <img alt="Brand" src="https://image.flaticon.com/icons/png/512/64/64572.png" width="32" height="32"/>
+                            </a>
+                        </div>
+                        <div class="collapse navbar-collapse">
+                            <div class="nav navbar-nav">
+                                <p class="navbar-text">Eci Stream</p>
+                            </div>
+                            <div class="navbar-right">
+                                <button id="logOutButton" type="button" class="btn btn-default navbar-btn">Log out</button>
+                            </div>
+                        </div>                        
+                    </div>
+                </nav>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-lg-offset-2 col-xs-offset-2 col-md-offset-2 col-sm-offset-2">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Keywords</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data">                                                
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

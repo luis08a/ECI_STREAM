@@ -27,7 +27,8 @@ $(document).ready(function() {
             },
             data: JSON.stringify(user)
         });                
-        
-        console.log("termino");
+        alert("Data send");
+        //console.log("termino");
+        location.href = "main.html";        
     });
 });

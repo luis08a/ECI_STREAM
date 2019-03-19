@@ -16,3 +16,7 @@
 .users {
     transform: translateY(20%);
 }
+
+.img {
+    padding-top: 10px;
+}
