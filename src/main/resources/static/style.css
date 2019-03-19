@@ -6,5 +6,9 @@
 }
 
 .login {    
-    transform: translateY(60%);    
+    transform: translateY(50%);
+}
+
+.register {
+    transform: translateY(10%);
 }
