@@ -1,14 +1,5 @@
 var roomModule = (function () {
-    let category = $("#title").value()
-    let title = $("#title").value()
-    let keyWords = $("#title").value()
-    let description = $("#description").value()
-
-    let roomInfo = {
-        category: category
-    }
-    let user = $.get("/login")
-
+    
     var createRoom =function () {
         $.ajax({
             url: '/api/rooms',
@@ -22,20 +13,29 @@ var roomModule = (function () {
         });
     }
     var getRooms = function () {
-            $.get("api/roms",function (data,status) {
-                array.forEach(data => {
-                    let category = data.category
-                    let title = data.title
-                    let keyWords = data.keywords
-                    let description = data.description
-                    
-                    $("table tbody").append(markup);
-                });
-                
-            })
-        }
-
-return{
-    create: createRoom
-}
+        APIModule.getRooms( function(data) {
+            data.forEach( value => {
+                value = value.information
+                let category = value.category
+                let title = value.title
+                let keyWords = value.keywords
+                let description = value.description
+                var markup = "<tr><td>"
+                    + title
+                    + "</td><td>" 
+                    + category
+                    + "</td><td>"
+                    + null
+                    + "</td><td>"
+                    + description
+                    + "</td></tr>";
+                $("#data").html(markup)
+            });
+        })
+        
+    }
+    return{
+        create: createRoom,
+        consultInfo: getRooms
+    }
 })();

@@ -13,11 +13,9 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,9 +30,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class StreamAPIController {
     @Autowired
     Services ss;
-    
-    // Get request
 
+    // GET requests
     @RequestMapping(value="/users", method=RequestMethod.GET)
     public ResponseEntity<?> consultAllUsers() {
         try {
@@ -59,7 +56,7 @@ public class StreamAPIController {
     public ResponseEntity<?> consultRooms() {
         try{
             return new ResponseEntity<>(ss.getAllRooms(), HttpStatus.ACCEPTED);
-        } catch (Exception ex) {
+        } catch (PersistenceException ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
         } 
@@ -69,7 +66,7 @@ public class StreamAPIController {
     public ResponseEntity<?> consultRoomByID(@PathVariable Long id) {
         try{
             return new ResponseEntity<>(ss.getRoomById(id), HttpStatus.ACCEPTED);
-        } catch (Exception ex) {
+        } catch (PersistenceException ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
         } 
@@ -86,15 +83,14 @@ public class StreamAPIController {
         } 
     }
 
-    // Post request
+    // POST requests
 
     @RequestMapping(value="/users", method=RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<?> LogIn(@RequestBody User o) {
-        System.out.println("entro: " + o.toString());
+    public ResponseEntity<?> LogIn(@RequestBody User o) {       
         try{
             ss.createUser(o, o.getPassword());
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (Exception ex) {
+        } catch (PersistenceException ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Refussed",HttpStatus.FORBIDDEN);            
         }     
@@ -105,7 +101,7 @@ public class StreamAPIController {
         try{
             ss.createRoom(u, i);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (Exception ex) {
+        } catch (PersistenceException ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Refused to create the room. Invalid information",HttpStatus.FORBIDDEN);            
         }     

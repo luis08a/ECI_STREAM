@@ -12,15 +12,5 @@ $(document).ready(function() {
         
         alert('Email: ' + email + ' Password: ' + password);
         
-        $.post('/api/users',
-        {
-            user : {
-                email : email,
-                password : password
-            }
-        },
-        function(data, status){
-            alert("Data: " + data + "\nStatus: " + status);
-        });
     });
 });

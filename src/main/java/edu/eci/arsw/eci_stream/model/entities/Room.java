@@ -11,10 +11,17 @@ public class Room {
     private Long id;
     private final RoomInfo information;
 
-    public Room(Long id, User teacher, RoomInfo information){
-        this.id=id;
-        this.teacher=teacher;
-        this.information=information;
+    public Room(Long id, User teacher, RoomInfo information) {
+        this.id = id;
+        this.teacher = teacher;
+        this.information = information;
+    }
+
+    /**
+     * @return the information
+     */
+    public RoomInfo getInformation() {
+        return information;
     }
 
     public void addUser(User u) {
