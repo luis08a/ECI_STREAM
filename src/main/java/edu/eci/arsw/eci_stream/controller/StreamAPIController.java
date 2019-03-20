@@ -13,7 +13,10 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -85,7 +88,7 @@ public class StreamAPIController {
 
     // Post request
 
-    @RequestMapping(value="/users", method=RequestMethod.POST)
+    @RequestMapping(value="/users", method=RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<?> LogIn(@RequestBody User o) {
         System.out.println("entro: " + o.toString());
         try{
@@ -107,4 +110,17 @@ public class StreamAPIController {
             return new ResponseEntity<>("Refused to create the room. Invalid information",HttpStatus.FORBIDDEN);            
         }     
     }
+
+    //session
+    @RequestMapping(value="/login", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserLogged() {
+        try{
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String name = auth.getName();
+            return new ResponseEntity<>(ss.consultUserByName(name), HttpStatus.ACCEPTED);
+        } catch (PersistenceException ex) {
+            Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
+        } 
+  }
 }

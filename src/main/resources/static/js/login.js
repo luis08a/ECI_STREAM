@@ -24,14 +24,3 @@ $(document).ready(function() {
         });
     });
 });
-/*
-var loginModule = (function () {
-    var logIn = function () {
-        let email = $("#inputEmail")
-        console.log("This is the login information",email)
-        alert(email)
-    }
-    return{
-        log: logIn
-    }    
-})();*/
