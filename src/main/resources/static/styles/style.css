@@ -14,12 +14,22 @@
     font-size: 32px;
 }
 
+iframe {
+    width: 100%;
+    height: 500px;
+    border-style: double;
+    border-color: #900d0d;
+    border-radius: 5px;
+    padding: 3px;
+    background-color: #fffbcc;
+}
+
 .navbar-color {
     background-color: #fffbcc;
     margin: 10px;
 }
 
-.back-color-index, .back-color-main {
+.back-color-index, .back-color-main, .back-color-room {
     background-color: #fd2e2e;
 }
 
@@ -27,7 +37,7 @@
     background-color: #fffbcc;
 }
 
-#loginButton, #registerButton, #logOutButton, #CreateButton {
+#loginButton, #registerButton, #logOutButton, #CreateButton, #goBackButton {
     background-color: #900d0d;
     color: #fffbcc;
     font-family: 'Baloo Chettan', cursive;
@@ -45,7 +55,25 @@
 .content-table {
     background-color: #900d0d;
     color: #fffbcc;
-    border-style: double;    
+    border-style: double;
+}
+
+.table-users {
+    background-color: #900d0d;
+    color: #fffbcc;
+    border-style: double;
+    border-radius: 5px;
+}
+
+.title-room {
+    background-color: #900d0d;
+    border-style: dotted;
+    border-radius: 10px;
+    color: #fffbcc;
+}
+
+.blank {
+    margin-top: 50px;
 }
 
 .content-table th {
