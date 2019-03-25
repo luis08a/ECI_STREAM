@@ -73,5 +73,13 @@ public class MockPersistence implements StreamPersistence {
         }
     }
 
-    
+    @Override
+    public void joinInARoom(User u, long roomId) throws PersistenceException {
+        if(mockRooms.containsKey(roomId)){
+            mockRooms.get(roomId).addUser(u);
+        }
+        else{
+            throw new PersistenceException("The room doesn´t exist");
+        }
+    }
 }

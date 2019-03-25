@@ -34,6 +34,9 @@ public class Services  {
     public List<User> getUsersByRoom(Long roomId) throws PersistenceException {
             return sp.getRoomById(roomId).getUsers();
     }
+    public void joinInAroom(User u, Long roomId) throws PersistenceException {
+        sp.joinInARoom(u,roomId);
+    }
 
     //Room methods
     public List<Room> getAllRooms() throws PersistenceException {

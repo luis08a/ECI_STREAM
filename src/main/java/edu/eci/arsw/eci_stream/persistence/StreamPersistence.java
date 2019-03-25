@@ -17,6 +17,8 @@ public interface StreamPersistence {
 
     public void registerUser(User u, String password) throws PersistenceException;
 
+    public void joinInARoom(User u, long roomId) throws PersistenceException;
+
     public List<Room> getRooms() throws PersistenceException;
 
     public Room getRoomById(Long id) throws PersistenceException;

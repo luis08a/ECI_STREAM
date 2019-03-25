@@ -1,5 +1,10 @@
 var roomModule = (function () {
-    
+
+    var currentUser= $.get("/api/users/me",function (data) {
+            console.log(data)
+            return data;
+        })
+
     var createRoom =function () {
         let roomInfo = {
             category:$("#category").val(),
@@ -7,8 +12,8 @@ var roomModule = (function () {
             keyWords:[],
             description:$("#description").val()
         }
-
-        APIModule.getUserById("me",function (data) {
+        
+        APIModule.getUserById(currentUser,function (data) {
             $.ajax({
                 url: '/api/rooms',
                 type: 'POST',
@@ -46,6 +51,13 @@ var roomModule = (function () {
     }
     return{
         create: createRoom,
-        consultInfo: getRooms
+        consultInfo: function () {
+            if (currentUser.responseText=="anonymousUser") {
+                location.href = "/";
+            }
+            else{
+                getRooms
+            }
+        }
     }
 })();

@@ -111,13 +111,23 @@ public class StreamAPIController {
         }     
     }
     
+    @RequestMapping(value="/rooms/{roomId}/users", method=RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<?> joinInARoom(@PathVariable Long roomId ,@RequestBody User u) {
+        try{
+            ss.joinInAroom(u,roomId);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Refused to Join in the room. Invalid information",HttpStatus.FORBIDDEN);            
+        }     
+    }
     //session
-    @RequestMapping(value="/users/me", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value="/users/me", method = RequestMethod.GET)
     public ResponseEntity<?> getUserLogged() {
         try{
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String name = auth.getName();
-            return new ResponseEntity<>(ss.consultUserByName(name), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(name, HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
