@@ -27,10 +27,10 @@ public class AuthProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication auth) throws AuthenticationException {         
     	try {
-			if (mp.getUserByName(auth.getPrincipal().toString()) != null && dbP.consultarUsuarios(auth.getName().toString(), auth.getCredentials().toString())) {
+			if (mp.getUserByName(auth.getPrincipal().toString()) != null /*&& dbP.consultarUsuarios(auth.getName().toString(), auth.getCredentials().toString())*/) {
 				return new UsernamePasswordAuthenticationToken(auth.getName(), auth.getCredentials());
 			}
-		} catch (dataBaseException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

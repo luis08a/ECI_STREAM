@@ -90,6 +90,7 @@ public class StreamAPIController {
     @RequestMapping(value="/users", method=RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<?> registerUser(@RequestBody User o) {       
         try{
+            System.out.println("Entré");
             ss.createUser(o, o.getPassword());
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (PersistenceException ex) {
@@ -98,17 +99,18 @@ public class StreamAPIController {
         }     
     }
     
-    @RequestMapping(value="/rooms", method=RequestMethod.POST)
+    @RequestMapping(value="/rooms", method=RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<?> createARoom(@RequestBody Room room) {
         try{
             ss.createRoom(room);
+            System.out.println("Entré");
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (PersistenceException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Refused to create the room. Invalid information",HttpStatus.FORBIDDEN);            
         }     
     }
-
+    
     //session
     @RequestMapping(value="/users/me", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getUserLogged() {

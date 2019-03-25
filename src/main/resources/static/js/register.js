@@ -3,18 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-$(document).ready(function() {
-
-    $('#Register').click(function(){
-        
+var registerModule=(function(){
+    var register=function() {
         var nameF = document.getElementById('name').value;
         var emailF = document.getElementById('email').value;
         var passwordF = document.getElementById('password').value;
-        
         var user = { name : nameF, email : emailF, password : passwordF };
-        
         //alert('Email: ' + emailF + ' Password: ' + passwordF);
-        
         $.ajax({
             url: '/api/users',
             type: 'POST',
@@ -26,6 +21,9 @@ $(document).ready(function() {
             data: JSON.stringify(user)
         });                
         alert("Data send");
-        location.href = "main.html";        
-    });
-});
+        location.href = "main.html";
+    }
+    return{
+        register: register
+    }
+})();

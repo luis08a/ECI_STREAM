@@ -8,28 +8,31 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 
-
 @Configuration
 @EnableWebSecurity
 public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
 	
-
+    
 	@Autowired
 	AuthProvider authProvider;
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {		
 		auth.authenticationProvider(authProvider);
 	}
- 
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/register","/").permitAll()
-                //.anyRequest().authenticated()
+                .antMatchers("/register","/","/api/users/*").permitAll()
+                .anyRequest().authenticated()
                 .and()
             .formLogin()
-                .defaultSuccessUrl("/main").permitAll();
+                .defaultSuccessUrl("/main").permitAll()
+            .and()
+            //.httpBasic()
+            //.and()
+            .csrf().disable();
     }
 }
 
