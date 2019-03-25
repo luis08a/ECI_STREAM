@@ -10,7 +10,8 @@ var APIModule = (function () {
     return {
         getUsers: function(callback){getRequest("/api/users",callback)} ,
         getRooms: function(callback){getRequest("/api/rooms",callback)},
-        getUserByid: function (userId,callback) {getRequest("/users/"+userId,callback)},
-        getRoomByid: function (roomId,callback) {getRequest("/rooms/"+roomId,callback)}
+        getUserById: function (userId,callback) {getRequest("/api/users/"+userId,callback)},
+        getRoomById: function (roomId,callback) {getRequest("/api/rooms/"+roomId,callback)},
+        getCurrentUserId: function (callback) {getRequest("/api/users/me",callback)}
     }
 })();

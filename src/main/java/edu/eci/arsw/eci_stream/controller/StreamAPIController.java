@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,9 +85,9 @@ public class StreamAPIController {
     }
 
     // POST requests
-
+    
     @RequestMapping(value="/users", method=RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<?> LogIn(@RequestBody User o) {       
+    public ResponseEntity<?> registerUser(@RequestBody User o) {       
         try{
             ss.createUser(o, o.getPassword());
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -95,7 +96,7 @@ public class StreamAPIController {
             return new ResponseEntity<>("Refussed",HttpStatus.FORBIDDEN);            
         }     
     }
-
+    
     @RequestMapping(value="/rooms", method=RequestMethod.POST)
     public ResponseEntity<?> createARoom(@RequestBody User u, @RequestBody RoomInfo i) {
         try{
@@ -108,13 +109,13 @@ public class StreamAPIController {
     }
 
     //session
-    @RequestMapping(value="/login", method = RequestMethod.GET)
+    @RequestMapping(value="/users/me", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<?> getUserLogged() {
         try{
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String name = auth.getName();
-            return new ResponseEntity<>(ss.consultUserByName(name), HttpStatus.ACCEPTED);
-        } catch (PersistenceException ex) {
+            return new ResponseEntity<>(name/*ss.consultUserByName(name)*/, HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
         } 

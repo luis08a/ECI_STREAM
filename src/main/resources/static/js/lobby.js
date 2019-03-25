@@ -11,7 +11,7 @@ $(document).ready(function() {
 
 function infoRooms() {
     $.getJSON('api/rooms', function (data) {
-        console.log(data);
+        //console.log(data);
         var res = "";
         /*jQuery.each(data, function (i ,val) {
             var n = "<td>"+val.name+"</td>";

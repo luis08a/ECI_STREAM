@@ -1,16 +1,30 @@
 var roomModule = (function () {
     
     var createRoom =function () {
-        $.ajax({
-            url: '/api/rooms',
-            type: 'POST',
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function (data) {
-                console.log('room created');
-            },
-            data: JSON.stringify({user,room})
-        });
+        /*let roomInfo = {category:$("#category").val(),
+            title:$("#title").val(),
+            keyWords:[],
+            description:$("#description").val()
+        }*/
+        let roomInfo={ category:"maths",title:"room2",keyWords:[],description:"d"}
+        event.preventDefault();
+        console.log("Hola")
+            APIModule.getUserById("user1",function (data) {
+                console.log("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLll")
+                console.log(data)
+                $.ajax({
+                    url: '/api/rooms',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (succes) {
+                        console.log('room created');
+                    },
+                    data: JSON.stringify({data,roomInfo})
+                })
+                
+            })
+        
     }
     var getRooms = function () {
         APIModule.getRooms( function(data) {
@@ -32,7 +46,6 @@ var roomModule = (function () {
                 $("#data").html(markup)
             });
         })
-        
     }
     return{
         create: createRoom,

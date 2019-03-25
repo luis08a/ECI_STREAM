@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-public class securityController	 extends WebSecurityConfigurerAdapter {
+public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
 	
 
 	@Autowired
@@ -23,16 +23,13 @@ public class securityController	 extends WebSecurityConfigurerAdapter {
  
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	
-        http.authorizeRequests().antMatchers("/register").permitAll()
-        .and()
-        .formLogin()
-        	.permitAll()
-        	.usernameParameter("userName")
-        	.passwordParameter("password")
-        .and()
-        .httpBasic()
-            .and().csrf().disable();
+        http
+            .authorizeRequests()
+                .antMatchers("/register","/").permitAll()
+                //.anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .defaultSuccessUrl("/main").permitAll();
     }
 }
 
