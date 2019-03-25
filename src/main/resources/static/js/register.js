@@ -25,7 +25,7 @@ $(document).ready(function() {
             },
             data: JSON.stringify(user)
         });                
-        alert("Data send");
-        location.href = "main.html";        
+        //alert("Data send");
+        location.href = "/login";        
     });
 });

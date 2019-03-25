@@ -29,7 +29,9 @@ public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
                 //.anyRequest().authenticated()
                 .and()
             .formLogin()
-                .defaultSuccessUrl("/main").permitAll();
+                .defaultSuccessUrl("/main.html").permitAll()
+            .and()
+            .csrf().disable();
     }
 }
 
