@@ -1,8 +1,41 @@
+/* color reference
+- https://colorhunt.co/palette/106460
+- https://colorhunt.co/palette/139362
+*/
+@import url('https://fonts.googleapis.com/css?family=Baloo+Chettan|Roboto');
+
+.navbar-color {
+    background-color: #fffbcc;
+}
+
+.back-color-index {
+    background-color: #fd2e2e;
+}
+
+#loginButton, #registerButton {
+    background-color: #900d0d;
+    color: #fffbcc;
+    font-family: 'Baloo Chettan', cursive;
+}
+
 .form-horizontal {
     background: gainsboro;
     border-radius: 20px;
     padding: 10px;
     padding-top: 20px;
+}
+
+.content {
+    background-color: #fffbcc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.jumbotron {
+    background-color: #cf1b1b;
+    color: #fffbcc;
+    border-style: double;
+    font-family: 'Baloo Chettan', cursive;
 }
 
 .login {    

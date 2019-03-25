@@ -26,6 +26,6 @@ $(document).ready(function() {
             data: JSON.stringify(user)
         });                
         //alert("Data send");
-        location.href = "/login";        
+        location.href = "/login";
     });
 });
