@@ -9,13 +9,16 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
 import edu.eci.arsw.eci_stream.persistence.persistenceImpl.MockPersistence;
+import edu.eci.arsw.eci_stream.persistence.persistenceImpl.dataBaseException;
+import edu.eci.arsw.eci_stream.persistence.persistenceImpl.dataBasePersistance;
 
 @Service
 public class AuthProvider implements AuthenticationProvider {
 
 	@Autowired
 	MockPersistence mp;
-
+	@Autowired
+	dataBasePersistance dbP;
 	@Override
     public boolean supports(Class<? extends Object> authentication) {
         return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
@@ -23,10 +26,18 @@ public class AuthProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication auth) throws AuthenticationException {         
-    	if (mp.getUserByName(auth.getPrincipal().toString()) != null && mp.getUserByName(auth.getPrincipal().toString()).getPassword().equals(auth.getCredentials()))
-    		return new UsernamePasswordAuthenticationToken(auth.getName(), auth.getCredentials());
+    	try {
+			if (mp.getUserByName(auth.getPrincipal().toString()) != null && dbP.consultarUsuarios(auth.getName().toString(), auth.getCredentials().toString())) {
+				return new UsernamePasswordAuthenticationToken(auth.getName(), auth.getCredentials());
+			}
+		} catch (dataBaseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
         throw new BadCredentialsException("Username/Password does not match for " + auth.getPrincipal());
     }
 
 }
+
+
