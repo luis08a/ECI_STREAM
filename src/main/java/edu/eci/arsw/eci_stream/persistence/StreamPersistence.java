@@ -21,5 +21,5 @@ public interface StreamPersistence {
 
     public Room getRoomById(Long id) throws PersistenceException;
 
-    public void createARoom(User user, RoomInfo information) throws PersistenceException;
+    public void createARoom(Room room) throws PersistenceException;
 }

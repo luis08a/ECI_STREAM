@@ -10,7 +10,7 @@ import java.sql.Statement;
 import org.springframework.stereotype.Service;
 
 import edu.eci.arsw.eci_stream.model.entities.User;
-@Service
+//@Service
 public class dataBasePersistance {
 
 	private final String url = "jdbc:postgresql://ec2-184-73-216-48.compute-1.amazonaws.com:5432/d7svuls8keggss";

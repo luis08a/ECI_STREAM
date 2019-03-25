@@ -63,10 +63,11 @@ public class MockPersistence implements StreamPersistence {
     }
 
     @Override
-    public void createARoom(User user, RoomInfo information) {
+    public void createARoom(Room room) {
         for(long i=0;;i++){
             if(!mockRooms.keySet().contains(i)){
-                mockRooms.put(i, new Room(i, user, information));
+                room.setId(i);
+                mockRooms.put(i, room);
                 break;
             }
         }

@@ -2,6 +2,7 @@ package edu.eci.arsw.eci_stream.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.eci.arsw.eci_stream.model.entities.Room;
 import edu.eci.arsw.eci_stream.model.entities.RoomInfo;
 import edu.eci.arsw.eci_stream.model.entities.User;
 import edu.eci.arsw.eci_stream.persistence.PersistenceException;
@@ -98,9 +99,9 @@ public class StreamAPIController {
     }
     
     @RequestMapping(value="/rooms", method=RequestMethod.POST)
-    public ResponseEntity<?> createARoom(@RequestBody User u, @RequestBody RoomInfo i) {
+    public ResponseEntity<?> createARoom(@RequestBody Room room) {
         try{
-            ss.createRoom(u, i);
+            ss.createRoom(room);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (PersistenceException ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);

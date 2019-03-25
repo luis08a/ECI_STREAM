@@ -12,9 +12,23 @@ public class Room {
     private final RoomInfo information;
 
     public Room(Long id, User teacher, RoomInfo information) {
-        this.id = id;
+        this.setId(id);
         this.teacher = teacher;
         this.information = information;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
