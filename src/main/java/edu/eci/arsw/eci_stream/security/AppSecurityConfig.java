@@ -24,14 +24,12 @@ public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/register","/","/api/users/*").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/register","/","/api/users/**","api/rooms/**","register.html").permitAll()
+                //.anyRequest().authenticated()
                 .and()
             .formLogin()
-                .defaultSuccessUrl("/main").permitAll()
+                .defaultSuccessUrl("/main.html").permitAll()
             .and()
-            //.httpBasic()
-            //.and()
             .csrf().disable();
     }
 }

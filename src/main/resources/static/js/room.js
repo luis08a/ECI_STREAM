@@ -7,10 +7,8 @@ var roomModule = (function () {
             keyWords:[],
             description:$("#description").val()
         }
-        //console.log("data: "+roomInfo.title+" "+ roomInfo.category +" "+ roomInfo.description)
-        /*let roomInfo={ category:"maths",title:"room2",keyWords:[],description:"d"}*/
-        event.preventDefault();
-        APIModule.getUserById("user1",function (data) {
+
+        APIModule.getUserById("me",function (data) {
             $.ajax({
                 url: '/api/rooms',
                 type: 'POST',
@@ -19,14 +17,14 @@ var roomModule = (function () {
                 success: function (succes) {
                     console.log('room created');
                 },
-                data: JSON.stringify({users:null,teacher:data,id:null,roomInfo:roomInfo})
+                data: JSON.stringify({teacher:data,information:roomInfo})
             });
-            console.log(JSON.stringify({users:null,teacher:data,id:null,roomInfo:roomInfo}));
+            location.href = "/main";
         });
-        
     };
     var getRooms = function () {
         APIModule.getRooms( function(data) {
+            $("#data").html("")
             data.forEach( value => {
                 value = value.information
                 let category = value.category
@@ -42,7 +40,7 @@ var roomModule = (function () {
                     + "</td><td>"
                     + description
                     + "</td></tr>";
-                $("#data").html(markup)
+                $("#data").append(markup)
             });
         })
     }

@@ -8,8 +8,8 @@ var registerModule=(function(){
         var nameF = document.getElementById('name').value;
         var emailF = document.getElementById('email').value;
         var passwordF = document.getElementById('password').value;
+        
         var user = { name : nameF, email : emailF, password : passwordF };
-        //alert('Email: ' + emailF + ' Password: ' + passwordF);
         $.ajax({
             url: '/api/users',
             type: 'POST',
@@ -19,9 +19,8 @@ var registerModule=(function(){
                 console.log('done, ' + data);
             },
             data: JSON.stringify(user)
-        });                
-        alert("Data send");
-        location.href = "main.html";
+        });
+        location.href = "/login"; 
     }
     return{
         register: register

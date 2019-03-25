@@ -33,11 +33,6 @@ public class dataBasePersistance {
 		return conn;
 	}
 
-	public static void main(String[] args) {
-		dataBasePersistance app = new dataBasePersistance();
-		app.connect();
-	}
-
 	public void agregarUsuarios(User user) throws dataBaseException {
 		long id = 0;
 		String SQL = "INSERT INTO users(username,email,pasword) " + "VALUES(?,?,?)";

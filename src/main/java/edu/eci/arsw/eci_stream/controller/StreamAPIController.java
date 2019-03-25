@@ -13,8 +13,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.codec.json.Jackson2JsonEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -90,7 +92,6 @@ public class StreamAPIController {
     @RequestMapping(value="/users", method=RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<?> registerUser(@RequestBody User o) {       
         try{
-            System.out.println("Entré");
             ss.createUser(o, o.getPassword());
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (PersistenceException ex) {
@@ -103,7 +104,6 @@ public class StreamAPIController {
     public ResponseEntity<?> createARoom(@RequestBody Room room) {
         try{
             ss.createRoom(room);
-            System.out.println("Entré");
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
@@ -117,7 +117,7 @@ public class StreamAPIController {
         try{
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String name = auth.getName();
-            return new ResponseEntity<>(name/*ss.consultUserByName(name)*/, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(ss.consultUserByName(name), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
