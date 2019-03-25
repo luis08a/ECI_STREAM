@@ -118,7 +118,7 @@ public class StreamAPIController {
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception ex) {
             Logger.getLogger(StreamAPIController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Refused to Join in the room. Invalid information",HttpStatus.FORBIDDEN);            
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);            
         }     
     }
     //session

@@ -1,5 +1,6 @@
 package edu.eci.arsw.eci_stream.model.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,6 +40,9 @@ public class Room {
     }
 
     public void addUser(User u) {
+        if(users==null){
+            users=new ArrayList<User>();
+        }
         users.add(u);
     }
 
