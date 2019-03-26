@@ -13,7 +13,7 @@ var roomModule = (function () {
             description:$("#description").val()
         }
         
-        APIModule.getUserById(currentUser,function (data) {
+        APIModule.getUserById(currentUser.responseText,function (data) {
             $.ajax({
                 url: '/api/rooms',
                 type: 'POST',
@@ -56,7 +56,7 @@ var roomModule = (function () {
                 location.href = "/";
             }
             else{
-                getRooms
+                getRooms()
             }
         }
     }
