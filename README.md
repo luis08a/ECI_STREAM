@@ -1,17 +1,16 @@
+
+
 # ECI_STREAM
 ## ARSW 2019-1 Project
 
   
 
 ### Team:
--   Luis Moreno
-    
--   Nicolas Cardenas
-    
--   Andres Villamil
-    
-
-  
+| Name | Role |
+|--|--|
+| Luis Moreno | Developer Backend |
+| Nicolas Cardenas | Developer Frondend |
+| Andres Villamil | Developer Backend |
 
 ### ECI Stream:
 In this project we want to create a new educational tool which allows its users to share information in real time via streaming, where there is a teacher that has a role as a leader which can share its screen as the main screen for the members of the stream (students), and everybody in the stream can choose from a pool the screen of another member as a secondary, this would be divided in private or public streams where the private would have password, or a free entry.
@@ -33,11 +32,6 @@ In this project we want to create a new educational tool which allows its users 
 -   The method that will allow us to achieve the goal is implementing sound and video streaming service where each person in a particular party can share its screen in order to show to others members what he or she is doing in that moment. Of course is necessary the presence of a teacher or master member that controls the meeting.
     
 
-
-
-  
-  
-
 ### Functionality
 
 First the user will register in the system to create an account, where he will provide data as username password and an email.
@@ -52,6 +46,15 @@ In the profile tab will be shown the main information of the user and a photo if
 In all the tabs there will be the logout button which will close this instance of the account and redirect to the login page.
 In order to make a great user experience the user also will be able to follow other users and rate the job done for other user.
 
+### Demo 
+
+ - ![index](/images/index.png)
+- ![login](/images/login.png)
+- ![register](/images/register.png)
+- ![main](/images/main.png)
+- ![createRoom](/images/createRoom.png)
+- ![room](/images/room.png)
+
 ### User stories:
 
 [https://tree.taiga.io/project/luis08a-arsw-2019-1-eci-stream/backlog](https://tree.taiga.io/project/luis08a-arsw-2019-1-eci-stream/backlog)
@@ -61,5 +64,3 @@ This application needs installed:
 * Java
 * Tomcat
 * Spring 
-
-  
