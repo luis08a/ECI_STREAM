@@ -42,5 +42,3 @@ public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
             .csrf().disable();
     }
 }
-
-
