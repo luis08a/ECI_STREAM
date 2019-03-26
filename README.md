@@ -47,13 +47,18 @@ In all the tabs there will be the logout button which will close this instance o
 In order to make a great user experience the user also will be able to follow other users and rate the job done for other user.
 
 ### Demo 
-
- - ![index](/images/index.png)
-- ![login](/images/login.png)
-- ![register](/images/register.png)
-- ![main](/images/main.png)
-- ![createRoom](/images/createRoom.png)
-- ![room](/images/room.png)
+- View of index page <br>
+![index](/images/index.png)
+- View of login page <br>
+![login](/images/login.png)
+- View of register page <br>
+![register](/images/register.png)
+- View of main page <br>
+![main](/images/main.png)
+- View of creat room page <br>
+![createRoom](/images/createRoom.png)
+- View of room page <br>
+![room](/images/room.png)
 
 ### User stories:
 
