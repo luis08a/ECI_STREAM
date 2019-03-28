@@ -33,11 +33,13 @@ public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()                
-                .antMatchers("/", "/register", "/register.html", "/styles/**", "/webjars/**").permitAll()
+                .antMatchers("/", "/register", "/styles/**", "/webjars/**", "/**.ico", "/js/**").permitAll()
                 .anyRequest().authenticated()
             .and()
             .formLogin()
-                .defaultSuccessUrl("/main.html").permitAll()
+                .loginPage("/login")
+                .defaultSuccessUrl("/main")
+                .permitAll()
             .and()
                 .logout()
                 .logoutSuccessUrl("/")

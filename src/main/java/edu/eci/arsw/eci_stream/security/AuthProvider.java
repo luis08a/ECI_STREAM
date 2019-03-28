@@ -27,6 +27,7 @@ public class AuthProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication auth) throws AuthenticationException {         
     	try {
+    		System.out.println(auth.getPrincipal());
 			if (mp.getUserByName(auth.getPrincipal().toString()) != null /*&& dbP.consultarUsuarios(auth.getName().toString(), auth.getCredentials().toString())*/) {
 				return new UsernamePasswordAuthenticationToken(auth.getName(), auth.getCredentials());
 			}

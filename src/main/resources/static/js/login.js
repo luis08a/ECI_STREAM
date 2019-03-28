@@ -7,8 +7,8 @@ $(document).ready(function() {
 
     $('#SignIn').click(function(){
         
-        var email = document.getElementById('inputEmail').value;
-        var password = document.getElementById('inputPassword').value;
+        var email = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
         
         alert('Email: ' + email + ' Password: ' + password);
         
