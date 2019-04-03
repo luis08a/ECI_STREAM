@@ -1,19 +1,29 @@
 package edu.eci.arsw.eci_stream.model.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Entity
 public class User {
+    @Id
     private String name;
+    @NotNull
+    @Email
     private String email;
+    @NotNull
     private String password; 
-    
+
     public User(String name, String email,String pass){
         this.name=name;
         this.email=email; 
         this.password=pass;
     }
 
-    public User() {}
+    private User() {}
 
 	/**
      * @return the name
@@ -43,6 +53,7 @@ public class User {
         this.name = name;
     }
 
+    @JsonIgnore
 	public String getPassword() {
 		return password;
 	}

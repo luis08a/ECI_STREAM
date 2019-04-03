@@ -10,6 +10,7 @@ import edu.eci.arsw.eci_stream.model.entities.RoomInfo;
 import edu.eci.arsw.eci_stream.model.entities.User;
 import edu.eci.arsw.eci_stream.persistence.PersistenceException;
 import edu.eci.arsw.eci_stream.persistence.StreamPersistence;
+import edu.eci.arsw.eci_stream.persistence.UserPersistence;
 
 /**
  * services
@@ -18,10 +19,11 @@ import edu.eci.arsw.eci_stream.persistence.StreamPersistence;
 public class Services  {
     @Autowired
     StreamPersistence sp;
-
+    @Autowired
+    UserPersistence up;
     //User Methods
-    public List<User> getAllUsers() throws PersistenceException {
-        return sp.getUsers();
+    public Iterable<User> getAllUsers() throws PersistenceException {
+        return up.findAll();
     }
 
     public User consultUserByName(String userName) throws PersistenceException {
@@ -37,7 +39,9 @@ public class Services  {
     public void joinInAroom(User u, Long roomId) throws PersistenceException {
         sp.joinInARoom(u,roomId);
     }
-
+    public void leaveRoom(Long roomId){
+        
+    }
     //Room methods
     public List<Room> getAllRooms() throws PersistenceException {
         return sp.getRooms();
