@@ -25,21 +25,23 @@ public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
         web
             .ignoring()
             .antMatchers("/resources/**")
-            .antMatchers("/**.css");
+            .antMatchers("/**.css")
+            .antMatchers("/resources/static/js/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
-                .antMatchers("/","/register").permitAll()
-                //.anyRequest().authenticated()
-                .and()
+            .authorizeRequests()                
+                .antMatchers("/", "/register", "/register.html", "/styles/**", "/webjars/**").permitAll()
+                .anyRequest().authenticated()
+            .and()
             .formLogin()
                 .defaultSuccessUrl("/main.html").permitAll()
             .and()
-            .csrf().disable();
+                .logout()
+                .logoutSuccessUrl("/")
+            .and()
+                .csrf().disable();
     }
 }
-
-
