@@ -2,23 +2,26 @@ package edu.eci.arsw.eci_stream.model.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "users")
 public class User {
-    @Id
-    private String name;
     @NotNull
+    private String username;
+    @NotNull
+    @Id
     @Email
     private String email;
     @NotNull
     private String password; 
 
     public User(String name, String email,String pass){
-        this.name=name;
+        this.username=name;
         this.email=email; 
         this.password=pass;
     }
@@ -29,7 +32,7 @@ public class User {
      * @return the name
      */
     public String getName() {
-        return name;
+        return username;
     }
 
     /**
@@ -50,7 +53,7 @@ public class User {
      * @param name the name to set
      */
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     @JsonIgnore

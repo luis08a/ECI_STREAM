@@ -3,6 +3,7 @@ package edu.eci.arsw.eci_stream.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import edu.eci.arsw.eci_stream.model.entities.Room;
@@ -18,6 +19,7 @@ import edu.eci.arsw.eci_stream.persistence.UserPersistence;
 @Service
 public class Services  {
     @Autowired
+    @Qualifier("mock persistence")
     StreamPersistence sp;
     @Autowired
     UserPersistence up;

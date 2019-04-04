@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 function info() {
-    $.getJSON('api/users', function (data) {
+    APIModule.getUsers(function (data) {
         //console.log(data);
         var res = "";
         jQuery.each(data, function (i ,val) {

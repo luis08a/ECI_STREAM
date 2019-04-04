@@ -12,6 +12,4 @@ import edu.eci.arsw.eci_stream.model.entities.User;
  */
 @Repository
 public interface UserPersistence extends CrudRepository<User, Long>{
-    List<User> findByEmail(String email);
-    List<User> findByName(String name);
 }

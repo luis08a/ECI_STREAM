@@ -24,8 +24,7 @@ public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
             .ignoring()
-            .antMatchers("/resources/**")
-            .antMatchers("/**.css")
+            .antMatchers("/resources/**","/styles/**","/webjars/**")
             .antMatchers("/resources/static/js/**");
     }
 
@@ -33,11 +32,11 @@ public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()                
-                .antMatchers("/", "/register", "/register.html", "/styles/**", "/webjars/**").permitAll()
+                .antMatchers("/","/register").permitAll()
                 .anyRequest().authenticated()
             .and()
             .formLogin()
-                .defaultSuccessUrl("/main.html").permitAll()
+                .defaultSuccessUrl("/main").permitAll()
             .and()
                 .logout()
                 .logoutSuccessUrl("/")

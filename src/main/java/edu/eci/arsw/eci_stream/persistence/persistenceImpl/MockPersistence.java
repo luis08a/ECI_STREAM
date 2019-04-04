@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import edu.eci.arsw.eci_stream.model.entities.Room;
@@ -17,6 +18,7 @@ import edu.eci.arsw.eci_stream.persistence.StreamPersistence;
  * InMemoryPersistence
  */
 @Service
+@Qualifier("mock persistence")
 public class MockPersistence implements StreamPersistence {
     private Map<String, User> mockUsers = new HashMap<String, User>();
     private Map<Long,Room> mockRooms = new HashMap<Long,Room>();

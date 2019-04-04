@@ -10,16 +10,7 @@ var registerModule=(function(){
         var passwordF = document.getElementById('password').value;
         
         var user = { name : nameF, email : emailF, password : passwordF };
-        $.ajax({
-            url: '/api/users',
-            type: 'POST',
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function (data) {
-                console.log('done, ' + data);
-            },
-            data: JSON.stringify(user)
-        });
+        APIModule.register(user);
         location.href = "/login"; 
     }
     return{

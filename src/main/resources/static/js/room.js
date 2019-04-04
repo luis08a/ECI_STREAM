@@ -1,9 +1,9 @@
 var roomModule = (function () {
 
-    var currentUser= $.get("/api/users/me",function (data) {
+    let currentUser= function(){APIModule.getCurrentUserId(function (data) {
             console.log(data)
             return data;
-        })
+        })}
 
     var createRoom =function () {
         let roomInfo = {
@@ -14,16 +14,8 @@ var roomModule = (function () {
         }
         
         APIModule.getUserById(currentUser.responseText,function (data) {
-            $.ajax({
-                url: '/api/rooms',
-                type: 'POST',
-                dataType: 'json',
-                contentType: 'application/json',
-                success: function (succes) {
-                    console.log('room created');
-                },
-                data: JSON.stringify({teacher:data,information:roomInfo})
-            });
+            let room = {teacher:data,information:roomInfo}
+            APIModule.crateRoom(room)
             location.href = "/main";
         });
     };
