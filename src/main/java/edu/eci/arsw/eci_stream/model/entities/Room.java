@@ -46,7 +46,7 @@ public class Room {
         users.add(u);
     }
 
-    public void removeUser(String userName){
+    public void removeUser(String userName) {
         for(User u: users){
             if(u.getName().equals(userName))
             users.remove(u);

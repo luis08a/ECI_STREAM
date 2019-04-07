@@ -1,6 +1,7 @@
 package edu.eci.arsw.eci_stream.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,21 +28,29 @@ public class Services  {
     public Iterable<User> getAllUsers() throws PersistenceException {
         return up.findAll();
     }
-
-    public User consultUserByName(String userName) throws PersistenceException {
-        return sp.getUserByName(userName);
+    public User findById(String email) throws PersistenceException{
+        Optional<User> user= up.findById(email);
+        if(user.isPresent())return user.get();
+        throw new PersistenceException("User does not exist");
+    }
+    public List<User> consultUserByName(String userName) throws PersistenceException {
+        return up.findByusername(userName);
     }
 
-    public void createUser(User u, String password) throws PersistenceException {
-        sp.registerUser(u, password);
+    public void createUser(User u) throws PersistenceException {
+        up.save(u);
+    }
+
+    public void updateUser(User u) throws PersistenceException{
+        up.save(u);
     }
     public List<User> getUsersByRoom(Long roomId) throws PersistenceException {
-            return sp.getRoomById(roomId).getUsers();
+        return sp.getRoomById(roomId).getUsers();
     }
     public void joinInAroom(User u, Long roomId) throws PersistenceException {
         sp.joinInARoom(u,roomId);
     }
-    public void leaveRoom(Long roomId){
+    public void leaveRoom(Long roomId, String UserEmail){
         
     }
     //Room methods
