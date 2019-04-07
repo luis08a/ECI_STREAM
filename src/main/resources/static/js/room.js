@@ -28,6 +28,7 @@ var roomModule = (function () {
             location.href = "/main";
         });
     };
+    
     var getRooms = function () {
         APIModule.getRooms( function(data) {
             //console.log(data);
