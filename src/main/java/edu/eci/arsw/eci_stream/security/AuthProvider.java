@@ -31,6 +31,8 @@ public class AuthProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication auth) throws AuthenticationException {
+    	System.out.println(auth.getDetails().toString());
+    	//System.out.println(up.countByusernameAndpassword(auth.getName(), auth.getDetails().);
 		if (up.findById(auth.getPrincipal().toString()).isPresent() ) {
 			return new UsernamePasswordAuthenticationToken(auth.getName(), auth.getCredentials());
 		}
