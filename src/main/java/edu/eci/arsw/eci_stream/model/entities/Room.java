@@ -1,5 +1,6 @@
 package edu.eci.arsw.eci_stream.model.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,17 +12,41 @@ public class Room {
     private Long id;
     private final RoomInfo information;
 
-    public Room(Long id, User teacher, RoomInfo information){
-        this.id=id;
-        this.teacher=teacher;
-        this.information=information;
+    public Room(Long id, User teacher, RoomInfo information) {
+        this.setId(id);
+        this.teacher = teacher;
+        this.information = information;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the information
+     */
+    public RoomInfo getInformation() {
+        return information;
     }
 
     public void addUser(User u) {
+        if(users==null){
+            users=new ArrayList<User>();
+        }
         users.add(u);
     }
 
-    public void removeUser(String userName){
+    public void removeUser(String userName) {
         for(User u: users){
             if(u.getName().equals(userName))
             users.remove(u);

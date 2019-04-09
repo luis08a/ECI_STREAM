@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * RoomInfo
  */
-public class RoomInfo {    
+public class RoomInfo {
     private String category;
     private String title;
     private List<String> KeyWords;

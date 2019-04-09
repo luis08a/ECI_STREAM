@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import edu.eci.arsw.eci_stream.model.entities.Room;
@@ -17,6 +18,7 @@ import edu.eci.arsw.eci_stream.persistence.StreamPersistence;
  * InMemoryPersistence
  */
 @Service
+@Qualifier("mock persistence")
 public class MockPersistence implements StreamPersistence {
     private Map<String, User> mockUsers = new HashMap<String, User>();
     private Map<Long,Room> mockRooms = new HashMap<Long,Room>();
@@ -28,7 +30,7 @@ public class MockPersistence implements StreamPersistence {
         mockUsers.put(u1.getName(), u1);
         mockUsers.put(u2.getName(), u2);
 
-        Room r1 = new Room((long) 1, u1, new RoomInfo("","",null,null));
+        Room r1 = new Room((long) 1, u1, new RoomInfo("programing","room1",null,"It´s a mock room"));
         mockRooms.put((long) 1, r1);
     }
 
@@ -63,14 +65,33 @@ public class MockPersistence implements StreamPersistence {
     }
 
     @Override
-    public void createARoom(User user, RoomInfo information) {
+    public void createARoom(Room room) {
         for(long i=0;;i++){
             if(!mockRooms.keySet().contains(i)){
-                mockRooms.put(i, new Room(i, user, information));
+                room.setId(i);
+                mockRooms.put(i, room);
                 break;
             }
         }
     }
 
-    
+    @Override
+    public void joinInARoom(User u, long roomId) throws PersistenceException {
+        if(mockRooms.containsKey(roomId)){
+            mockRooms.get(roomId).addUser(u);
+        }
+        else{
+            throw new PersistenceException("The room doesn´t exist");
+        }
+    }
+
+    @Override
+    public void leaveRoom(String userId, Long roomId) throws PersistenceException {
+        if(mockRooms.containsKey(roomId)){
+            mockRooms.get(roomId).removeUser(userId);
+        }
+        else{
+            throw new PersistenceException("The room doesn´t exist");
+        }
+    }
 }
