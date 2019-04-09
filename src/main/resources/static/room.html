@@ -6,6 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortct icon" href="/logo-web-eci-stream.ico">
 
+        <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+        <script src="/webjars/stomp-websocket/stomp.min.js"></script>
 		<script src="/webjars/jquery/jquery.min.js"></script>
 	  	<script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	  	<script src="/js/stream.js"></script>
@@ -14,7 +16,7 @@
         <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/styles/style.css" type="text/css">
 	</head>
-	<body class="back-color-room" onload="streamModule.infoRoom()">
+	<body class="back-color-room" onload="streamModule.init()">
 		<div class="container-fluid">
 		<nav class="navbar navbar-default navbar-color">
             <div class="container-fluid">
