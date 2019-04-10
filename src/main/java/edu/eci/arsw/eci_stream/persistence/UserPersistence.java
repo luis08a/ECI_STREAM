@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.validation.constraints.Email;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import edu.eci.arsw.eci_stream.model.entities.User;
@@ -15,4 +17,7 @@ import edu.eci.arsw.eci_stream.model.entities.User;
 @Repository
 public interface UserPersistence extends CrudRepository<User, String >{
     List<User> findByusername(String name);
+    @Query("select u from User u where u.email=:n and u.password=:p")
+    List<User> findUser(@Param("n") String name,@Param("p") String password);
+    
 }

@@ -1,5 +1,6 @@
 package edu.eci.arsw.eci_stream.security;
 
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -23,8 +24,15 @@ public class AuthProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication auth) throws AuthenticationException {
-		if (up.findById(auth.getPrincipal().toString()).isPresent() ) {
-			return new UsernamePasswordAuthenticationToken(auth.getName(), auth.getCredentials());
+        String name = auth.getPrincipal().toString();
+        String pass = auth.getCredentials().toString();
+        System.out.println("inicio el auth");
+        System.out.println("existe"+up.findUser(name, pass));
+        //up.findById(auth.getPrincipal().toString()).isPresent()
+		if (!(up.findUser(name, pass).isEmpty())) {
+            
+            System.out.println("entro al auth");
+			return new UsernamePasswordAuthenticationToken(auth.getName(), auth.getCredentials(),new ArrayList<>());
 		}
         throw new BadCredentialsException("Username/Password does not match for " + auth.getPrincipal());
     }
