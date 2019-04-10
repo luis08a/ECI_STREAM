@@ -37,7 +37,7 @@ iframe {
     background-color: #fffbcc;
 }
 
-#loginButton, #registerButton, #logOutButton, #CreateButton, #goBackButton {
+#loginButton, #registerButton, #logOutButton, #CreateButton, #goBackButton, #join {
     background-color: #900d0d;
     color: #fffbcc;
     font-family: 'Baloo Chettan', cursive;

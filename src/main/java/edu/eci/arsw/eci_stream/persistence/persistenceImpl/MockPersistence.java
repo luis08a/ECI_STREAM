@@ -21,16 +21,23 @@ import edu.eci.arsw.eci_stream.persistence.StreamPersistence;
 @Qualifier("mock persistence")
 public class MockPersistence implements StreamPersistence {
     private Map<String, User> mockUsers = new HashMap<String, User>();
-    private Map<Long,Room> mockRooms = new HashMap<Long,Room>();
+    private Map<Long, Room> mockRooms = new HashMap<Long, Room>();
 
     public MockPersistence() {
 
+        User t1 = new User("teacher1", "teacher1@mail.com", "porcifrar1");
         User u1 = new User("user1", "user1@mail.com", "porcifrar1");
-        User u2 = new User("user2", "user2@mail.com", "porcifrar2");
+        User u2 = new User("user2", "user2@mail.com", "porcifrar2");        
+        User u3 = new User("user2", "user2@mail.com", "porcifrar2");
         mockUsers.put(u1.getName(), u1);
         mockUsers.put(u2.getName(), u2);
+        mockUsers.put(u2.getName(), u3);
 
-        Room r1 = new Room((long) 1, u1, new RoomInfo("programing","room1",null,"It´s a mock room"));
+        Room r1 = new Room((long) 1, t1, new RoomInfo("programing","Room1",null,"It´s a mock room"));
+        r1.addUser(u1);
+        r1.addUser(u2);
+        r1.addUser(u2);
+
         mockRooms.put((long) 1, r1);
     }
 

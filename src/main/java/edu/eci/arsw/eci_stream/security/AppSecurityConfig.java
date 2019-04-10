@@ -24,8 +24,8 @@ public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
             .ignoring()
-            .antMatchers("/resources/**","/styles/**","/webjars/**")
-            .antMatchers("/resources/static/js/**");
+            .antMatchers("/resources/static/**","/styles/**")
+            .antMatchers("/webjars/**");
     }
 
     @Override

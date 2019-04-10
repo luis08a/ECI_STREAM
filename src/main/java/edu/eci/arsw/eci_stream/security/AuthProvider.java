@@ -19,10 +19,6 @@ import edu.eci.arsw.eci_stream.persistence.persistenceImpl.dataBasePersistance;
 public class AuthProvider implements AuthenticationProvider {
 
 	@Autowired
-	MockPersistence mp;
-	@Autowired
-	dataBasePersistance dbP;
-	@Autowired
 	UserPersistence up;
 	@Override
     public boolean supports(Class<? extends Object> authentication) {
@@ -38,5 +34,3 @@ public class AuthProvider implements AuthenticationProvider {
     }
 
 }
-
-
