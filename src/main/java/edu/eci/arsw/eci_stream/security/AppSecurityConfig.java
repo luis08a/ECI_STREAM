@@ -24,7 +24,7 @@ public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
             .ignoring()
-            .antMatchers("/resources/static/**","/styles/**")
+            .antMatchers("/resources/static/**","/styles/**","/js/**","/img/**")
             .antMatchers("/webjars/**");
     }
 
@@ -36,6 +36,7 @@ public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
             .and()
             .formLogin()
+                .loginPage("/login")
                 .defaultSuccessUrl("/main").permitAll()
             .and()
                 .logout()

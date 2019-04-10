@@ -1,9 +1,11 @@
+
 var roomModule = (function () {
 
-    let currentUser= function(){APIModule.getCurrentUserId(function (data) {
-            console.log(data)
-            return data;
-        })}
+    var currentUser
+    APIModule.getCurrentUserId(function (data) {
+        console.log(data)
+            currentUser=data;
+        })
 
     var createRoom =function () {
         let roomInfo = {
@@ -13,7 +15,7 @@ var roomModule = (function () {
             description:$("#description").val()
         }
         
-        APIModule.getUserById(currentUser.responseText,function (data) {
+        APIModule.getUserById(currentUser,function (data) {
             let room = {teacher:data,information:roomInfo}
             APIModule.crateRoom(room)
             location.href = "/main";
@@ -48,7 +50,8 @@ var roomModule = (function () {
     }
 
     var changeToRoom = function (id) {
-        location.href = "/room?id=" + id;
+        APIModule.joinInARoom(id,currentUser);
+        //location.href = "/room?id=" + id;
     }
 
     return{

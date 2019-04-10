@@ -7,6 +7,7 @@ var APIModule = (function () {
     }
 
     var postRequest= function(url, object){
+        debugger
         $.ajax({
             url: url,
             type: 'POST',

@@ -64,7 +64,7 @@ var streamModule = (function () {
     function onMessage(event){
         var message = JSON.parse(event.body);
         if (message.type === 'Join')
-            getRoom();        
+            //getRoom();        
         console.log(message);
     }
 
