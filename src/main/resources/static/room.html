@@ -61,13 +61,16 @@
                         </tbody>
                     </table>
 				</div>
-				<div class="col-sm-7">
-					<iframe src="http://player.twitch.tv/?muted=fales&channel=monstercat"></iframe>
-				</div>
+				
+                <video playsinline autoplay muted></video>
+                
 				<div class="col-sm-2">
 					<iframe frameborder="0" scrolling="no" id="chat-monstercat-embed" src="http://twitch.tv/chat/embed?channel=monstercat&amp;popout_chat=true" height="100%" width="100%"></iframe>
 				</div>
 			</div>
-		</div>
+        </div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/streamBase.js"></script>
+        <script src="/js/streamViewer.js"></script>
 	</body>
 </html>
