@@ -42,7 +42,8 @@ function broadcast() {  // eslint-disable-line no-unused-vars
   const ctx = canvas.getContext('2d');
   navigator.getUserMedia = navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
-                         navigator.mozGetUserMedia;
+                         navigator.mozGetUserMedia ||
+                         null;
 	navigator.getUserMedia({ video : true },
 	function(stream) {
 		video.srcObject = stream;
