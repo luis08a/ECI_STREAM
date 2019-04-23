@@ -9,9 +9,11 @@ const constraints = {
 navigator.mediaDevices.getUserMedia(constraints)
 .then(function(stream) {
 	video.srcObject = stream;
-	socket.emit('broadcaster');
+	//socket.emit('broadcaster');
+	
 }).catch(error => console.error(error));
 
+/*
 socket.on('answer', function(id, description) {
 	peerConnections[id].setRemoteDescription(description);
 });
@@ -39,4 +41,4 @@ socket.on('candidate', function(id, candidate) {
 socket.on('bye', function(id) {
 	peerConnections[id] && peerConnections[id].close();
 	delete peerConnections[id];
-});
+});*/
