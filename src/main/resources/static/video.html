@@ -5,14 +5,15 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="description" content="Video Broadcast.">
-	<meta name="author" content="Brian Mau">
+  <meta name="author" content="Brian Mau">
+  <script src="./js/streamBase.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
 </head>
-<body>
+<body onload="connectAndSubscribe()">
+start record
+<button onclick="broadcast();""></button>
 <video playsinline autoplay muted></video>
 <img/>
-<script src="./js/streamBase.js"></script>
-<script>
-  broadcast();
-</script>
 </body>
 </html>

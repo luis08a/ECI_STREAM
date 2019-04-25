@@ -137,7 +137,7 @@
 		</dependency>
 
 
-				<!-- https://mvnrepository.com/artifact/org.webjars.npm/simple-peer -->
+		<!-- https://mvnrepository.com/artifact/org.webjars.npm/simple-peer -->
 		<dependency>
 			<groupId>org.webjars.npm</groupId>
 			<artifactId>simple-peer</artifactId>
@@ -160,7 +160,7 @@
 				<!-- Use the latest released version:
 				https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
 				<version>LATEST_VERSION</version>
-				...
+				
 			</plugin>
 		</plugins>
 	</build>
