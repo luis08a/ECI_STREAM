@@ -44,10 +44,10 @@ function broadcast() {  // eslint-disable-line no-unused-vars
 	const video = document.querySelector('video');
 	const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-  /*navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia ||
-                         navigator.mediaDevices.webkitGetUserMedia ||
-                         navigator.mediaDevices.mozGetUserMedia ||
-                        null;*/
+  navigator.mediaDevices.getDisplayMedia = navigator.mediaDevices.getDisplayMedia ||
+                         navigator.mediaDevices.webkitGetDisplayMedia ||
+                         navigator.mediaDevices.mozGetDisplayMedia ||
+                        null;
   navigator.mediaDevices.getDisplayMedia({ video: true})
   .then(
 	function(stream) {
