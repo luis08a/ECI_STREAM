@@ -19,14 +19,45 @@ public class User {
     private String email;
     @NotNull
     private String password; 
+    private String profile;
+    private float rating;
 
-    public User(String name, String email,String pass){
-        this.username=name;
-        this.email=email; 
-        this.password=pass;
+    public User(String name, String email, String pass) {
+        this.username = name;
+        this.email = email;
+        this.password = pass;
     }
 
-    private User() {}
+    /**
+     * @return the rating
+     */
+    public float getRating() {
+        return rating;
+    }
+
+    /**
+     * @param rating the rating to set
+     */
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    /**
+     * @return the profile
+     */
+    public String getProfile() {
+        return profile;
+    }
+
+    /**
+     * @param profile the profile to set
+     */
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
+    private User() {
+    }
 
 	/**
      * @return the name

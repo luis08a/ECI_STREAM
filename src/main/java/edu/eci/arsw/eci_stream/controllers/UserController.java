@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 /**
  * StreamAPIController
  */
@@ -31,58 +30,75 @@ public class UserController {
     Services ss;
 
     // GET requests
-    @RequestMapping( method=RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> consultAllUsers() {
         try {
-            return new ResponseEntity<>(ss.getAllUsers(),HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(ss.getAllUsers(), HttpStatus.ACCEPTED);
         } catch (PersistenceException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
-        }  
+            return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
+        }
     }
-    
-    @RequestMapping(value="/{user}", method=RequestMethod.GET)
+
+    @RequestMapping(value = "/{user}", method = RequestMethod.GET)
     public ResponseEntity<?> consultUserById(@PathVariable String user) {
-        try{
+        try {
             return new ResponseEntity<>(ss.findById(user), HttpStatus.ACCEPTED);
         } catch (PersistenceException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
-        } 
+            return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
+        }
     }
-/*
-    @RequestMapping( method=RequestMethod.GET)
-    public ResponseEntity<?> consultUsersByName(@RequestAttribute String userName) {
-        try{
-            return new ResponseEntity<>(ss.findById(userName), HttpStatus.ACCEPTED);
-        } catch (PersistenceException ex) {
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
-        } 
-    }*/
+    /*
+     * @RequestMapping( method=RequestMethod.GET) public ResponseEntity<?>
+     * consultUsersByName(@RequestAttribute String userName) { try{ return new
+     * ResponseEntity<>(ss.findById(userName), HttpStatus.ACCEPTED); } catch
+     * (PersistenceException ex) {
+     * Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+     * return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND); } }
+     */
     // POST requests
-    
-    @RequestMapping(method=RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<?> registerUser(@RequestBody User u) {       
-        try{
+
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<?> registerUser(@RequestBody User u) {
+        try {
             ss.createUser(u);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (PersistenceException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Refussed",HttpStatus.FORBIDDEN);            
-        }     
+            return new ResponseEntity<>("Refussed", HttpStatus.FORBIDDEN);
+        }
     }
-   
-    //Session
-    @RequestMapping(value="/me", method = RequestMethod.GET)
-    public ResponseEntity<?> getUserLogged() {
+
+    @RequestMapping(value="/rating.{user}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateRating(@PathVariable String user,@RequestBody String r) {
         try{
+           int f = Integer.valueOf(r);
+          
+           boolean b =ss.rating(user, f);
+            if(b){
+                return new ResponseEntity<>(b, HttpStatus.ACCEPTED);
+            }
+            else{
+                return new ResponseEntity<>(ss.findById(user), HttpStatus.ACCEPTED);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Not found",HttpStatus.INTERNAL_SERVER_ERROR);            
+        }
+        
+  }
+
+    // Session
+    @RequestMapping(value = "/me", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserLogged() {
+        try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String name = auth.getName();
             return new ResponseEntity<>(name, HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);            
-        } 
-  }
+            return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
+        }
+    }
 }

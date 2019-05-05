@@ -13,6 +13,7 @@ import edu.eci.arsw.eci_stream.model.entities.User;
 import edu.eci.arsw.eci_stream.persistence.PersistenceException;
 import edu.eci.arsw.eci_stream.persistence.StreamPersistence;
 import edu.eci.arsw.eci_stream.persistence.UserPersistence;
+import edu.eci.arsw.eci_stream.persistence.persistenceImpl.dataBasePersistance;
 
 /**
  * services
@@ -24,6 +25,8 @@ public class Services  {
     StreamPersistence sp;
     @Autowired
     UserPersistence up;
+    @Autowired
+    dataBasePersistance dbp;
     //User Methods
     public Iterable<User> getAllUsers() throws PersistenceException {
         return up.findAll();
@@ -64,6 +67,20 @@ public class Services  {
 
     public void createRoom(Room room) throws PersistenceException {
         sp.createARoom(room);
+    }
+
+    public Boolean rating(String name, int rating){
+        boolean hecho =false;
+        try{
+        User u = up.findByusername(name).get(0);
+        float r = (u.getRating()+rating)/2;
+        hecho=dbp.updateRating(r, name);
+        return (hecho);
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
 
 }
