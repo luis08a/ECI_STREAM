@@ -1,11 +1,13 @@
 package edu.eci.arsw.eci_stream.persistence.persistenceImpl;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -94,14 +96,16 @@ public class dataBasePersistance {
 	}
 
 
-	public boolean updateRating(float r,String name){
+	public boolean updateRating(List<Integer> r,String name){
 		boolean cambiado=false;
 		String SQL = "update users set rating=(?) where username=(?)";
 		try {
 			Connection conn = connect();
 			PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+			
 
-			pstmt.setFloat(1, r);
+
+			pstmt.setArray(1, (Array) r);
 			pstmt.setString(2, name);
 
 			cambiado = pstmt.execute();
@@ -114,5 +118,9 @@ public class dataBasePersistance {
 		
 
 		return cambiado;
+	}
+
+	public boolean updateRating(int[] f, String name) {
+		return false;
 	}
 }

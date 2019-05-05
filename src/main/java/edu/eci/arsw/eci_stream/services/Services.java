@@ -1,5 +1,6 @@
 package edu.eci.arsw.eci_stream.services;
 
+import java.sql.Array;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +20,7 @@ import edu.eci.arsw.eci_stream.persistence.persistenceImpl.dataBasePersistance;
  * services
  */
 @Service
-public class Services  {
+public class Services {
     @Autowired
     @Qualifier("mock persistence")
     StreamPersistence sp;
@@ -27,15 +28,19 @@ public class Services  {
     UserPersistence up;
     @Autowired
     dataBasePersistance dbp;
-    //User Methods
+
+    // User Methods
     public Iterable<User> getAllUsers() throws PersistenceException {
         return up.findAll();
     }
-    public User findById(String email) throws PersistenceException{
-        Optional<User> user= up.findById(email);
-        if(user.isPresent())return user.get();
+
+    public User findById(String email) throws PersistenceException {
+        Optional<User> user = up.findById(email);
+        if (user.isPresent())
+            return user.get();
         throw new PersistenceException("User does not exist");
     }
+
     public List<User> consultUserByName(String userName) throws PersistenceException {
         return up.findByusername(userName);
     }
@@ -44,19 +49,23 @@ public class Services  {
         up.save(u);
     }
 
-    public void updateUser(User u) throws PersistenceException{
+    public void updateUser(User u) throws PersistenceException {
         up.save(u);
     }
+
     public List<User> getUsersByRoom(Long roomId) throws PersistenceException {
         return sp.getRoomById(roomId).getUsers();
     }
+
     public void joinInAroom(User u, Long roomId) throws PersistenceException {
-        sp.joinInARoom(u,roomId);
+        sp.joinInARoom(u, roomId);
     }
-    public void leaveRoom(Long roomId, String UserEmail){
-        
+
+    public void leaveRoom(Long roomId, String UserEmail) {
+
     }
-    //Room methods
+
+    // Room methods
     public List<Room> getAllRooms() throws PersistenceException {
         return sp.getRooms();
     }
@@ -69,12 +78,15 @@ public class Services  {
         sp.createARoom(room);
     }
 
-    public Boolean rating(String name, int rating){
-        boolean hecho =false;
-        try{
-        User u = up.findByusername(name).get(0);
-        float r = (u.getRating()+rating)/2;
-        hecho=dbp.updateRating(r, name);
+    public Boolean rating(String name, int rating) {
+        boolean hecho = false;
+        try {
+            User u = up.findByusername(name).get(0);
+            List<Integer> f = u.getRating();
+            
+            f.set(rating-1, f.get(rating-1)+1);
+        
+        hecho=dbp.updateRating(f, name);
         return (hecho);
         }
         catch(Exception e){

@@ -1,5 +1,7 @@
 package edu.eci.arsw.eci_stream.model.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -20,7 +22,7 @@ public class User {
     @NotNull
     private String password; 
     private String profile;
-    private float rating;
+    private List<Integer> rating;
 
     public User(String name, String email, String pass) {
         this.username = name;
@@ -31,14 +33,14 @@ public class User {
     /**
      * @return the rating
      */
-    public float getRating() {
+    public List<Integer> getRating() {
         return rating;
     }
 
     /**
      * @param rating the rating to set
      */
-    public void setRating(float rating) {
+    public void setRating(List<Integer> rating) {
         this.rating = rating;
     }
 
