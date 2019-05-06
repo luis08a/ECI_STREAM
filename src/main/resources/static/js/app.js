@@ -7,7 +7,7 @@ var APIModule = (function () {
     }
 
     var postRequest= function(url, object){
-        debugger
+        //debugger
         $.ajax({
             url: url,
             type: 'POST',
@@ -33,7 +33,7 @@ var APIModule = (function () {
             postRequest(roomsUrl+roomId,user)
         },
         register: function (user) {
-          postRequest(usersUrl,user)
+            postRequest(usersUrl,user)
         }
     }
 })();
