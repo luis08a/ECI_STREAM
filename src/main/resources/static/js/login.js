@@ -10,7 +10,7 @@ $(document).ready(function() {
         var email = document.getElementById('username').value;
         var password = document.getElementById('password').value;
         
-        alert('Email: ' + email + ' Password: ' + password);
+        //alert('Email: ' + email + ' Password: ' + password);
         
     });
 });

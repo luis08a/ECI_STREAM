@@ -21,6 +21,7 @@ public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(authProvider);
 	}
     
+    @Override
     public void configure(WebSecurity web) throws Exception {
         web
             .ignoring()

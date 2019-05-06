@@ -1,11 +1,11 @@
 
 var roomModule = (function () {
 
-    var currentUser
+    var currentUser;
     APIModule.getCurrentUserId(function (data) {
-        console.log(data)
-            currentUser=data;
-        })
+        console.log(data);
+        currentUser=data;
+    });
 
     var createRoom =function () {
         let roomInfo = {
@@ -51,7 +51,7 @@ var roomModule = (function () {
 
     var changeToRoom = function (id) {
         APIModule.joinInARoom(id,currentUser);
-        //location.href = "/room?id=" + id;
+        location.href = "/room?id=" + id;
     }
 
     return{
