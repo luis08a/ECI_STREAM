@@ -13,9 +13,9 @@ import edu.eci.arsw.eci_stream.model.entities.Room;
 import edu.eci.arsw.eci_stream.model.entities.RoomInfo;
 import edu.eci.arsw.eci_stream.model.entities.User;
 import edu.eci.arsw.eci_stream.persistence.PersistenceException;
-import edu.eci.arsw.eci_stream.persistence.StreamPersistence;
 import edu.eci.arsw.eci_stream.persistence.UserPersistence;
 import edu.eci.arsw.eci_stream.persistence.persistenceImpl.dataBasePersistance;
+import edu.eci.arsw.eci_stream.persistence.persistenceImpl.streamPersistenceImpl;
 
 /**
  * services
@@ -23,12 +23,13 @@ import edu.eci.arsw.eci_stream.persistence.persistenceImpl.dataBasePersistance;
 @Service
 public class Services {
     @Autowired
-    @Qualifier("mock persistence")
-    StreamPersistence sp;
+    streamPersistenceImpl sp;
     @Autowired
     UserPersistence up;
     @Autowired
     dataBasePersistance dbp;
+
+    
 
     // User Methods
     public Iterable<User> getAllUsers() throws PersistenceException {
@@ -54,31 +55,6 @@ public class Services {
         up.save(u);
     }
 
-    public List<User> getUsersByRoom(Long roomId) throws PersistenceException {
-        return sp.getRoomById(roomId).getUsers();
-    }
-
-    public void joinInAroom(User u, Long roomId) throws PersistenceException {
-        sp.joinInARoom(u, roomId);
-    }
-
-    public void leaveRoom(Long roomId, String UserEmail) {
-
-    }
-
-    // Room methods
-    public List<Room> getAllRooms() throws PersistenceException {
-        return sp.getRooms();
-    }
-
-    public Room getRoomById(Long id) throws PersistenceException {
-        return sp.getRoomById(id);
-    }
-
-    public void createRoom(Room room) throws PersistenceException {
-        sp.createARoom(room);
-    }
-
     public Boolean rating(String name, int rating) {
         boolean hecho = false;
         try {
@@ -96,5 +72,43 @@ public class Services {
             return false;
         }
     }
+   
+
+    // Room methods
+    public List<Room> getAllRooms() throws PersistenceException {
+        return sp.getRooms();
+    }
+
+    public Room getRoomById(Long id) throws PersistenceException {
+        return sp.getRoomById(id);
+    }
+
+    public void createRoom(Room room) throws PersistenceException {
+        sp.createARoom(room);
+    }
+
+    public void eraseRoom(Long Id) throws PersistenceException {
+        sp.eraseRoom(Id);
+    }
+    public List<User> getUsersByRoom(Long roomId) throws PersistenceException {
+        return sp.getRoomById(roomId).getUsers();
+    }
+
+    public void joinInAroom(User u, Long roomId) throws PersistenceException {
+        sp.joinInARoom(u, roomId);
+    }
+
+    public void leaveRoom(Long roomId, String Username) {
+        try {
+            sp.leaveRoom(Username, roomId);
+        } catch (PersistenceException e) {
+            
+            e.printStackTrace();
+        }
+
+
+    }
+
+    
 
 }

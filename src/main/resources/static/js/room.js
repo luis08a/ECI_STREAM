@@ -8,22 +8,25 @@ var roomModule = (function () {
     });
 
     var createRoom =function () {
+        console.log("creando")
         let roomInfo = {
             category:$("#category").val(),
             title:$("#title").val(),
             keyWords:[],
             description:$("#description").val()
         }
-        
+        console.log(currentUser)
         APIModule.getUserById(currentUser,function (data) {
             let room = {teacher:data,information:roomInfo}
             APIModule.crateRoom(room)
             location.href = "/main";
         });
+        getRooms;
     };
     
     var getRooms = function () {
         APIModule.getRooms( function(data) {
+            console.log(data)
             //console.log(data);
             $("#data").html("")
             data.forEach( value => {                

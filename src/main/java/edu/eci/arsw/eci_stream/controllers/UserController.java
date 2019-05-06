@@ -94,8 +94,8 @@ public class UserController {
     public ResponseEntity<?> getUserLogged() {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            String name = auth.getName();
-            return new ResponseEntity<>(ss.findById(name).getName(), HttpStatus.ACCEPTED);
+            String name = auth.getPrincipal().toString();
+            return new ResponseEntity<>(ss.findById(name).getEmail(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);

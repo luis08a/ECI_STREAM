@@ -11,11 +11,11 @@ import edu.eci.arsw.eci_stream.model.entities.User;
  */
 public interface StreamPersistence {
 
-    public List<User> getUsers() throws PersistenceException;
+   /* public List<User> getUsers() throws PersistenceException;
 
     public User getUserByName(String userName) throws PersistenceException;
 
-    public void registerUser(User u, String password) throws PersistenceException;
+    public void registerUser(User u, String password) throws PersistenceException;*/
 
     public void joinInARoom(User u, long roomId) throws PersistenceException;
 
@@ -26,4 +26,6 @@ public interface StreamPersistence {
     public Room getRoomById(Long id) throws PersistenceException;
 
     public void createARoom(Room room) throws PersistenceException;
+
+    public void eraseRoom(Long roomId) throws PersistenceException;
 }

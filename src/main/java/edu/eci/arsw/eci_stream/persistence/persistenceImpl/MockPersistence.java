@@ -21,20 +21,7 @@ import edu.eci.arsw.eci_stream.persistence.StreamPersistence;
 @Qualifier("mock persistence")
 public class MockPersistence implements StreamPersistence {
 
-    @Override
-    public List<User> getUsers() throws PersistenceException {
-        return null;
-    }
-
-    @Override
-    public User getUserByName(String userName) throws PersistenceException {
-        return null;
-    }
-
-    @Override
-    public void registerUser(User u, String password) throws PersistenceException {
-
-    }
+   
 
     @Override
     public void joinInARoom(User u, long roomId) throws PersistenceException {
@@ -65,10 +52,10 @@ public class MockPersistence implements StreamPersistence {
 
     public MockPersistence() {
 
-        User t1 = new User("teacher1", "teacher1@mail.com", "porcifrar1");
-        User u1 = new User("user1", "user1@mail.com", "porcifrar1");
-        User u2 = new User("user2", "user2@mail.com", "porcifrar2");        
-        User u3 = new User("user2", "user2@mail.com", "porcifrar2");
+        User t1 = new User("teacher1", "teacher1@mail.com", "porcifrar1",null,null);
+        User u1 = new User("user1", "user1@mail.com", "porcifrar1",null,null);
+        User u2 = new User("user2", "user2@mail.com", "porcifrar2",null,null);        
+        User u3 = new User("user2", "user2@mail.com", "porcifrar2",null,null);
         mockUsers.put(u1.getName(), u1);
         mockUsers.put(u2.getName(), u2);
         mockUsers.put(u2.getName(), u3);
@@ -141,4 +128,9 @@ public class MockPersistence implements StreamPersistence {
             throw new PersistenceException("The room doesn´t exist");
         }
     }*/
+
+    @Override
+    public void eraseRoom(Long roomId) throws PersistenceException {
+
+    }
 }
