@@ -1,18 +1,25 @@
 package edu.eci.arsw.eci_stream.model.entities;
 
+import java.beans.Transient;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.springframework.security.access.prepost.PostFilter;
+
 @Entity
 @Table(name = "users")
 public class User {
+  
     @NotNull
     private String username;
     @NotNull
@@ -20,27 +27,30 @@ public class User {
     @Email
     private String email;
     @NotNull
-    private String password; 
+    private String password;
     private String profile;
-    private List<Integer> rating;
+    
+    private String rating;
 
-    public User(String name, String email, String pass) {
+    public User(String name, String email, String pass, String pro, String f) {
         this.username = name;
         this.email = email;
         this.password = pass;
+        this.profile = pro;
+        this.setRating(f);
     }
 
     /**
      * @return the rating
      */
-    public List<Integer> getRating() {
+    public String getRating() {
         return rating;
     }
 
     /**
      * @param rating the rating to set
      */
-    public void setRating(List<Integer> rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 

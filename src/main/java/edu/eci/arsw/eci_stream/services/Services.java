@@ -1,6 +1,7 @@
 package edu.eci.arsw.eci_stream.services;
 
 import java.sql.Array;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,11 +83,12 @@ public class Services {
         boolean hecho = false;
         try {
             User u = up.findByusername(name).get(0);
-            List<Integer> f = u.getRating();
-            
-            f.set(rating-1, f.get(rating-1)+1);
+            String f = u.getRating();
+            int[] arr = Arrays.stream(f.split(",")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+            arr[rating-1]=arr[rating-1]+1;
+            String h = Arrays.toString(arr);
         
-        hecho=dbp.updateRating(f, name);
+        hecho=dbp.updateRating(h, name);
         return (hecho);
         }
         catch(Exception e){

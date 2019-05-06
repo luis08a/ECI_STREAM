@@ -24,8 +24,7 @@ public interface UserPersistence extends CrudRepository<User, String >{
     List<User> findUser(@Param("n") String name,@Param("p") String password);
     
     
-    void updateRating(int[] r);
-
+  
   
     
 }

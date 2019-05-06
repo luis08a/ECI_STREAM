@@ -20,7 +20,47 @@ import edu.eci.arsw.eci_stream.persistence.StreamPersistence;
 @Service
 @Qualifier("mock persistence")
 public class MockPersistence implements StreamPersistence {
-    private Map<String, User> mockUsers = new HashMap<String, User>();
+
+    @Override
+    public List<User> getUsers() throws PersistenceException {
+        return null;
+    }
+
+    @Override
+    public User getUserByName(String userName) throws PersistenceException {
+        return null;
+    }
+
+    @Override
+    public void registerUser(User u, String password) throws PersistenceException {
+
+    }
+
+    @Override
+    public void joinInARoom(User u, long roomId) throws PersistenceException {
+
+    }
+
+    @Override
+    public void leaveRoom(String userId, Long roomId) throws PersistenceException {
+
+    }
+
+    @Override
+    public List<Room> getRooms() throws PersistenceException {
+        return null;
+    }
+
+    @Override
+    public Room getRoomById(Long id) throws PersistenceException {
+        return null;
+    }
+
+    @Override
+    public void createARoom(Room room) throws PersistenceException {
+
+    }
+   /* private Map<String, User> mockUsers = new HashMap<String, User>();
     private Map<Long, Room> mockRooms = new HashMap<Long, Room>();
 
     public MockPersistence() {
@@ -100,5 +140,5 @@ public class MockPersistence implements StreamPersistence {
         else{
             throw new PersistenceException("The room doesn´t exist");
         }
-    }
+    }*/
 }

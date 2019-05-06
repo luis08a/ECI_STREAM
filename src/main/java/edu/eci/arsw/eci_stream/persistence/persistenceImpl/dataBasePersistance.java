@@ -96,7 +96,7 @@ public class dataBasePersistance {
 	}
 
 
-	public boolean updateRating(List<Integer> r,String name){
+	public boolean updateRating(String r,String name){
 		boolean cambiado=false;
 		String SQL = "update users set rating=(?) where username=(?)";
 		try {
@@ -105,7 +105,7 @@ public class dataBasePersistance {
 			
 
 
-			pstmt.setArray(1, (Array) r);
+			pstmt.setString(1, r);
 			pstmt.setString(2, name);
 
 			cambiado = pstmt.execute();
@@ -120,7 +120,5 @@ public class dataBasePersistance {
 		return cambiado;
 	}
 
-	public boolean updateRating(int[] f, String name) {
-		return false;
-	}
+	
 }

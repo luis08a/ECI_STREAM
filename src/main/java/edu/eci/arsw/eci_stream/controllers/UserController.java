@@ -70,7 +70,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value="/rating.{user}", method = RequestMethod.PUT)
+    @RequestMapping(value="/rating.{user}", method = RequestMethod.POST)
     public ResponseEntity<?> updateRating(@PathVariable String user,@RequestBody String r) {
         try{
            int f = Integer.valueOf(r);
