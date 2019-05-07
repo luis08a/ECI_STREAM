@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "users")
 public class User {
     @NotNull
     private String username;

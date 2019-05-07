@@ -13,9 +13,9 @@ import edu.eci.arsw.eci_stream.model.entities.User;
 @Service
 public class dataBasePersistance {
 
-	private final String url = "jdbc:postgresql://ec2-184-73-216-48.compute-1.amazonaws.com:5432/d7svuls8keggss";
-	private final String user = "almapleezqdgmv";
-	private final String password = "bd35eb45aa7ddbc1fd5e4445d9830896931eefcc99cb12f1a6176b8048330e79";
+	private final String url = "jdbc:postgresql://ec2-54-225-95-183.compute-1.amazonaws.com:5432/d1eklfanov8b4e";
+	private final String user = "lhwhsablrhjkzl";
+	private final String password = "4ae800cc156641d730e12a8c0d5c76321dc49e24174bf119e16035c8a114cd34";
 
 	public Connection connect() {
 		Connection conn = null;
@@ -35,7 +35,7 @@ public class dataBasePersistance {
 
 	public void agregarUsuarios(User user) throws dataBaseException {
 		long id = 0;
-		String SQL = "INSERT INTO usuarios(username,email,pasword) " + "VALUES(?,?,?)";
+		String SQL = "INSERT INTO users(username,email,pasword) " + "VALUES(?,?,?)";
 		try (Connection conn = connect();
 				PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -64,7 +64,7 @@ public class dataBasePersistance {
 	public boolean consultarUsuarios(String userN,String pass) throws dataBaseException {
 		
 		boolean correcto=false;;
-		String SQL = "select exists(select 1 from usuarios WHERE username=(?) and password = (?))";
+		String SQL = "select exists(select 1 from users WHERE username=(?) and password = (?))";
 		try {Connection conn = connect();
 				PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
