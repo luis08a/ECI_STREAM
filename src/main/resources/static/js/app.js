@@ -33,6 +33,7 @@ var APIModule = (function () {
             postRequest(roomsUrl+roomId,user)
         },
         register: function (user) {
+            console.log("a registrar")
             postRequest(usersUrl,user)
         }
     }

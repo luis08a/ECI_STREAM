@@ -22,6 +22,8 @@ public interface UserPersistence extends CrudRepository<User, String >{
 
     @Query("select u from User u where u.email=:n and u.password=:p")
     List<User> findUser(@Param("n") String name,@Param("p") String password);
+
+   
     
     
   

@@ -21,9 +21,9 @@ public class dataBasePersistance {
 	@Autowired
 	UserPersistence up;
 
-	private final String url = "jdbc:postgresql://ec2-184-73-216-48.compute-1.amazonaws.com:5432/d7svuls8keggss";
-	private final String user = "almapleezqdgmv";
-	private final String password = "bd35eb45aa7ddbc1fd5e4445d9830896931eefcc99cb12f1a6176b8048330e79";
+	private final String url = "jdbc:postgresql://ec2-54-225-95-183.compute-1.amazonaws.com:5432/d1eklfanov8b4e";
+	private final String user = "lhwhsablrhjkzl";
+	private final String password = "4ae800cc156641d730e12a8c0d5c76321dc49e24174bf119e16035c8a114cd34";
 
 	public Connection connect() {
 		Connection conn = null;
@@ -52,7 +52,7 @@ public class dataBasePersistance {
 				pstmt.setString(2, user.getEmail());
 				pstmt.setString(3, user.getPassword());
 				pstmt.setNull(4, 0);
-				pstmt.setFloat(5, 5);
+				pstmt.setNull(5, 0);
 
 				int affectedRows = pstmt.executeUpdate();
 				// check the affected rows
@@ -63,14 +63,20 @@ public class dataBasePersistance {
 							id = rs.getLong(1);
 						}
 					} catch (SQLException ex) {
+						System.out.println("");System.out.println("");System.out.println("");System.out.println("");
 						System.out.println(ex.getMessage());
+						System.out.println("");System.out.println("");System.out.println("");System.out.println("");
 					}
 				}
+				
 			} catch (SQLException ex) {
+				System.out.println("");System.out.println("");System.out.println("");
 				System.out.println(ex.getMessage());
+				System.out.println("");System.out.println("");System.out.println("");
 			}
 			System.out.println(" id:" + id);
 		}
+		
 	}
 
 	public boolean consultarUsuarios(String userN, String pass) throws dataBaseException {
