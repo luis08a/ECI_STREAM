@@ -35,7 +35,7 @@ public class dataBasePersistance {
 
 	public void agregarUsuarios(User user) throws dataBaseException {
 		long id = 0;
-		String SQL = "INSERT INTO users(username,email,pasword) " + "VALUES(?,?,?)";
+		String SQL = "INSERT INTO usuarios(username,email,pasword) " + "VALUES(?,?,?)";
 		try (Connection conn = connect();
 				PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -64,7 +64,7 @@ public class dataBasePersistance {
 	public boolean consultarUsuarios(String userN,String pass) throws dataBaseException {
 		
 		boolean correcto=false;;
-		String SQL = "select exists(select 1 from users WHERE username=(?) and password = (?))";
+		String SQL = "select exists(select 1 from usuarios WHERE username=(?) and password = (?))";
 		try {Connection conn = connect();
 				PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
