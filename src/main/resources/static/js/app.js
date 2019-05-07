@@ -34,7 +34,9 @@ var APIModule = (function () {
         },
         register: function (user) {
             console.log("a registrar")
+
             postRequest(usersUrl,user)
+            console.log("registrado")
         }
     }
 })();
