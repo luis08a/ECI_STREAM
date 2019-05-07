@@ -65,6 +65,7 @@ public class UserController {
     @RequestMapping(method=RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<?> registerUser(@RequestBody User u) {       
         try{
+            System.out.println(u);
             ss.createUser(u);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (PersistenceException ex) {

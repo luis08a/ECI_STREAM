@@ -20,13 +20,47 @@ public class User {
     @NotNull
     private String password; 
 
-    public User(String name, String email,String pass){
-        this.username=name;
-        this.email=email; 
-        this.password=pass;
+    private String profile;
+    private String rating;
+
+    public User(String name, String email, String pass) {
+        this.username = name;
+        this.email = email;
+        this.password = pass;
+        this.profile=null;
+        this.rating=null;
     }
 
-    private User() {}
+    /**
+     * @return the rating
+     */
+    public String getRating() {
+        return rating;
+    }
+
+    /**
+     * @param rating the rating to set
+     */
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    /**
+     * @return the profile
+     */
+    public String getProfile() {
+        return profile;
+    }
+
+    /**
+     * @param profile the profile to set
+     */
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
+    private User() {
+    }
 
 	/**
      * @return the name
