@@ -254,7 +254,7 @@ li {
 li p {
     margin: auto;
 }
-video {
+.external-media {
     width: 100%;
     height: 500px;
     border-style: double;

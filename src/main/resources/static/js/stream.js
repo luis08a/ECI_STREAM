@@ -63,7 +63,7 @@ var streamModule = (function () {
         //Image.
         stompClient.subscribe(videoTopic + sala, function (data) {
             const i = document.querySelector('.external-media');
-            //i.src = data.body;
+            i.src = data.body;
         });
         var message = {
             sender: user,
@@ -88,9 +88,9 @@ var streamModule = (function () {
                         canvas.width = video.videoWidth;
                         canvas.height = video.videoHeight;
                         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                        const imageData = canvas.toDataURL("image/jpeg", 0.3);
+                        const imageData = canvas.toDataURL("image/jpeg", 0.4);
                         stompClient.send(videoTopic + sala, {}, imageData);
-                    }, 1000);
+                    }, 10);
                 }).catch(function (err) {
                     console.log(err.message);
                 });

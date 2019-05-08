@@ -6,16 +6,14 @@ var APIModule = (function () {
         $.get(url,callback)
     }
 
-    var postRequest= function(url, object){
+    var postRequest= function(url, object, callback){
         //debugger
         $.ajax({
             url: url,
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
-            success: function (msg) {
-                console.log(msg);
-            },
+            success: callback,
             data: JSON.stringify(object)
         });
     }
@@ -27,7 +25,7 @@ var APIModule = (function () {
         getRoomById: function (roomId,callback) {getRequest(roomsUrl+roomId,callback)},
         getCurrentUserId: function (callback) {getRequest(usersUrl+"me",callback)},
         // Post to the api
-        createRoom: function (object,callback) {},
+        createRoom: function (object,callback) {postRequest(roomsUrl,object,callback)},
         createRoom: function (object) {postRequest(roomsUrl,object)},
         joinInARoom: function (roomId,user) {
             postRequest(roomsUrl+roomId,user)
