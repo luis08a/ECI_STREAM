@@ -9,9 +9,9 @@ var registerModule=(function(){
         var emailF = document.getElementById('email').value;
         var passwordF = document.getElementById('password').value;
         
-        var user = { name : nameF, email : emailF, password : passwordF };
+        var user = { name : nameF, email : emailF, password : passwordF,profile:null,rating:null};
         APIModule.register(user);
-        location.href = "/login"; 
+        //location.href = "/login"; 
     }
     return{
         register: register

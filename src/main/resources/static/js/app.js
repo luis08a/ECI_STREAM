@@ -13,11 +13,19 @@ var APIModule = (function () {
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
-            success: function (msg) {
-                console.log(msg);
-            },
-            data: JSON.stringify(object)
+            data: JSON.stringify(object),
+            success: function(response){
+                
+                console.log('success: ' + response);
+               },
+            error: function(e){ 
+                //alert('Error: ' + e);
+                console.log("error:"+e)
+                console.log(e)
+               }
+            
         });
+   
     }
     return {
         // Get from the api
@@ -33,10 +41,8 @@ var APIModule = (function () {
             postRequest(roomsUrl+roomId,user)
         },
         register: function (user) {
-            console.log("a registrar")
-
             postRequest(usersUrl,user)
-            console.log("registrado")
+
         }
     }
 })();
