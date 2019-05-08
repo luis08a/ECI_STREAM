@@ -67,6 +67,7 @@ public class RoomController {
     public ResponseEntity<?> createARoom(@RequestBody Room room) {
         try{
             ss.createRoom(room);
+            System.out.println("crear en java aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);

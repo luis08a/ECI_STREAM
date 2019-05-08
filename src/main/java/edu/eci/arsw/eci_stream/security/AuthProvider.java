@@ -25,6 +25,9 @@ public class AuthProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication auth) throws AuthenticationException {
         String name = auth.getPrincipal().toString();
+        System.out.println("");System.out.println("");System.out.println("");System.out.println("");System.out.println("");System.out.println("");
+        System.out.println(name);
+        System.out.println("");System.out.println("");System.out.println("");System.out.println("");System.out.println("");System.out.println("");
         String pass = auth.getCredentials().toString();
         System.out.println("inicio el auth");
         System.out.println("existe"+up.findUser(name, pass));
