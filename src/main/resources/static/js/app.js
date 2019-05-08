@@ -27,8 +27,8 @@ var APIModule = (function () {
         getRoomById: function (roomId,callback) {getRequest(roomsUrl+roomId,callback)},
         getCurrentUserId: function (callback) {getRequest(usersUrl+"me",callback)},
         // Post to the api
-        crateRoom: function (object,callback) {},
-        crateRoom: function (object) {postRequest(roomsUrl,object)},
+        createRoom: function (object,callback) {},
+        createRoom: function (object) {postRequest(roomsUrl,object)},
         joinInARoom: function (roomId,user) {
             postRequest(roomsUrl+roomId,user)
         },

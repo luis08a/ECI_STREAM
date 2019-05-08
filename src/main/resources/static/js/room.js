@@ -18,7 +18,7 @@ var roomModule = (function () {
         console.log(currentUser)
         APIModule.getUserById(currentUser,function (data) {
             let room = {teacher:data,information:roomInfo}
-            APIModule.crateRoom(room)
+            APIModule.createRoom(room)
             location.href = "/main";
         });
         getRooms;

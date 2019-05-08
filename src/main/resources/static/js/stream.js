@@ -60,12 +60,10 @@ var streamModule = (function () {
         console.log('Connected: ' + frame);
         //chat
         stompClient.subscribe(chatTopic + sala, onMessage);
-        //video.
-        stompClient.subscribe(videoTopic + sala, function (stream) {
-            let video = document.querySelector('video');
-            let s = stream.body
-            console.log(s);
-            //video.srcObject = s;
+        //Image.
+        stompClient.subscribe(videoTopic + sala, function (data) {
+            const i = document.querySelector('.external-media');
+            //i.src = data.body;
         });
         var message = {
             sender: user,
@@ -73,6 +71,29 @@ var streamModule = (function () {
             type: 'Join'
         };
         stompClient.send("/app" + sala + ".newUser", {}, JSON.stringify(message));
+    }
+
+    function sendSreenSnapshot() {
+        const video = document.querySelector('.local-media');
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        navigator.mediaDevices.getDisplayMedia({ video: true })
+            .then(
+                function (stream) {
+                    video.srcObject = stream;
+                    let interval = setInterval(function () {
+                        if (!stream.active) {
+                            clearInterval(interval);
+                        }
+                        canvas.width = video.videoWidth;
+                        canvas.height = video.videoHeight;
+                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                        const imageData = canvas.toDataURL("image/jpeg", 0.3);
+                        stompClient.send(videoTopic + sala, {}, imageData);
+                    }, 1000);
+                }).catch(function (err) {
+                    console.log(err.message);
+                });
     }
 
     function sendMessage() {
@@ -140,22 +161,7 @@ var streamModule = (function () {
             sendMessage();
         },
         sendScreen: function () {
-            var video = document.querySelector('video');
-            var canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            navigator.mediaDevices.getDisplayMedia({ video: true })
-                .then(
-                    function (stream) {
-                        let interval = setInterval(function () {
-                            if(!stream.active){
-                                clearInterval(interval);
-                            }
-                            video.src=stream;
-                            stompClient.send(videoTopic + sala, {}, stream);
-                        }, 1000);
-                    }).catch(function (err) {
-                        console.log(err.message);
-                    });
+            sendSreenSnapshot();
         }
     };
 

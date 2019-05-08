@@ -67,7 +67,8 @@
                 </table>
             </div>
             <div class="col-sm-7">
-                <video playsinline autoplay></video>
+                <video class="local-media"></video>
+                <img class="external-media">
             </div>
             <div class="col-sm-2">
                 <div class="panel panel-default containerChat">
@@ -95,11 +96,11 @@
             </div>
         </div>
     </div>
-    <a class="flotante btn-floating btn-lg blue-gradient" onclick="streamModule.sendScreen()"><i class="fas fa-star"></i></a>
+    <a class="flotante btn-floating btn-lg blue-gradient" onclick="streamModule.sendScreen()"><i
+            class="fas fa-star"></i></a>
 </body>
 <script type="text/javascript">
     document.querySelector('#btn-chat').addEventListener('click', function (event) { streamModule.send(); });
 </script>
-<script src="/js/streamBase.js"></script>
 
 </html>
