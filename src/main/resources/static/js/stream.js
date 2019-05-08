@@ -65,7 +65,7 @@ var streamModule = (function () {
             let video = document.querySelector('video');
             let s = stream.body
             console.log(s);
-            video.srcObject = s;
+            //video.srcObject = s;
         });
         var message = {
             sender: user,
@@ -146,7 +146,10 @@ var streamModule = (function () {
             navigator.mediaDevices.getDisplayMedia({ video: true })
                 .then(
                     function (stream) {
-                        setInterval(function () {
+                        let interval = setInterval(function () {
+                            if(!stream.active){
+                                clearInterval(interval);
+                            }
                             video.src=stream;
                             stompClient.send(videoTopic + sala, {}, stream);
                         }, 1000);
