@@ -36,7 +36,8 @@ var roomModule = (function () {
                     + '<button id="join" class="btn btn-default" onclick="roomModule.toRoom(' + data2.id + ')">Join Room</button>'
                     + "</td></tr>";
                     $("#data").append(markup);*/
-                    getRooms();
+                    //getRooms();
+                    sendMessage();
                 })
                 console.log("termino el callback")
             });
@@ -93,7 +94,7 @@ var roomModule = (function () {
         //chat
         stompClient.subscribe("/topic/"+notification, onMessage);
         
-        stompClient.send("/app/"+notification , {}, JSON.stringify(message));
+        //stompClient.send("/app/"+notification , {}, JSON.stringify(message));
     }
 
     function sendMessage() {
@@ -104,13 +105,14 @@ var roomModule = (function () {
     }
 
     function onMessage(event) {
-        
+        getRooms();
     }
 
     return {
         create: createRoom,
         consultInfo: function () {
             getRooms();
+            connectAndSubscribe();
         },
         toRoom: function (id) {
             changeToRoom(id);
