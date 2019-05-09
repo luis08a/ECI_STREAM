@@ -41,12 +41,13 @@ public class InMemoryStreamPersistence implements StreamPersistence {
     }
 
     @Override
-    public void createARoom(Room room) {
+    public Room createARoom(Room room) {
         for (long i = 0;; i++) {
             if (!mockRooms.keySet().contains(i)) {
                 room.setId(i);
                 mockRooms.put(i, room);
-                break;
+                return room;
+                //break;
             }
         }
     }

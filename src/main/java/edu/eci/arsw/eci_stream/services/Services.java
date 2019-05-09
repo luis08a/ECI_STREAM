@@ -79,8 +79,8 @@ public class Services {
         return sp.getRoomById(id);
     }
 
-    public void createRoom(Room room) throws PersistenceException {
-        sp.createARoom(room);
+    public Room createRoom(Room room) throws PersistenceException {
+        return sp.createARoom(room);
     }
 
     public void eraseRoom(Long Id) throws PersistenceException {

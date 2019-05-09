@@ -19,9 +19,11 @@ var roomModule = (function () {
             }
             //console.log(currentUser)
             APIModule.getUserById(currentUser, function (data) {
-                let room = { teacher: data, information: roomInfo }
-                APIModule.createRoom(room, function (data) {
-                    console.log(data);
+                let room = { teacher: data, information: roomInfo };
+                console.log("entro al callback " + JSON.stringify(room));
+                APIModule.createRoom(room, function (data2) {
+                    console.log("datos createRoom " + JSON.stringify(data2));
+                    alert("datos del callback" + data2.val);
                     var markup = "<tr><td>"
                     + $("#title").val()
                     + "</td><td>"
@@ -33,8 +35,14 @@ var roomModule = (function () {
                     + "</td><td>"
                     + '<button id="join" class="btn btn-default" onclick="roomModule.toRoom(' + value.id + ')">Join Room</button>'
                     + "</td></tr>";
+
                 })
-            });            
+                console.log("termino el callback")
+            });
+
+            $("#category").val("");
+            $("#title").val("");
+            $("#description").val("");
         }
     };
 
