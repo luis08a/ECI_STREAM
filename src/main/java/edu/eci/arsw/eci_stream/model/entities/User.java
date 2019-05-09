@@ -37,8 +37,17 @@ public class User {
         this.email = email;
         this.password = pass;
         this.profile = pro;
-        this.setRating(f);
+        this.rating=f   ;
     }
+
+    public User(String name, String email, String pass) {
+        this.username = name;
+        this.email = email;
+        this.password = pass;
+        this.profile = null;
+        this.rating=null;
+    }
+
 
     /**
      * @return the rating
@@ -99,7 +108,7 @@ public class User {
         this.username = name;
     }
 
-    @JsonIgnore
+    
 	public String getPassword() {
 		return password;
 	}
@@ -110,6 +119,10 @@ public class User {
     
 	public Object getPasswordConfirm() {
 		return password;
-	}
+    }
+    
+    public String toString(){
+        return username+password+email+profile+rating;
+    }
     
 }

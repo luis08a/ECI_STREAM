@@ -24,6 +24,7 @@ var APIModule = (function () {
             },
             data: JSON.stringify(object)
         });
+   
     }
     return {
         // Get from the api
@@ -38,10 +39,8 @@ var APIModule = (function () {
             postRequest(roomsUrl+roomId,user)
         },
         register: function (user) {
-            console.log("a registrar")
-
             postRequest(usersUrl,user)
-            console.log("registrado")
+
         }
     }
 })();

@@ -62,9 +62,10 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<?> registerUser(@RequestBody User u) {
         try {
-            System.out.println(u);
+            System.out.println("registrando");            
             ss.createUser(u);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+
+            return new ResponseEntity<>("Creado",HttpStatus.NO_CONTENT);
         } catch (PersistenceException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Refussed", HttpStatus.FORBIDDEN);

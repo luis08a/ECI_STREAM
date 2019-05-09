@@ -2,6 +2,7 @@ package edu.eci.arsw.eci_stream.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -32,9 +33,9 @@ public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()                
-            .antMatchers("/").permitAll()
-            .antMatchers("/register","/login").not().authenticated()
+            .authorizeRequests()
+            .antMatchers("/","/register").permitAll()
+            .antMatchers(HttpMethod.POST, "/api/v1/users/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()
