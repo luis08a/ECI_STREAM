@@ -12,7 +12,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 @Service
 @Controller
-public class WSChatController {
+public class WSController {
     
     @Autowired
     SimpMessagingTemplate msgt;
@@ -27,4 +27,5 @@ public class WSChatController {
         headerAccessor.getSessionAttributes().put("username", webSocketChatMessage.getSender());
         msgt.convertAndSend("/topic/chat."+id, webSocketChatMessage);
     }
+
 }

@@ -33,10 +33,10 @@ public class AppSecurityConfig	 extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()                
-                .antMatchers("/","/register").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/v1/users/**").permitAll()
-                .anyRequest().authenticated()
+            .authorizeRequests()
+            .antMatchers("/","/register").permitAll()
+            .antMatchers(HttpMethod.POST, "/api/v1/users/**").permitAll()
+            .anyRequest().authenticated()
             .and()
             .formLogin()
                 .loginPage("/login")

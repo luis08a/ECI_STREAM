@@ -7,6 +7,7 @@ var streamModule = (function () {
     var sala = null;
     var user = null;
     var chatTopic = "/topic/chat.";
+    var chatsender = "/app/chat.";
     var videoTopic = "/topic/video.";
     /* https://www.color-hex.com */
     var colors = [
@@ -63,14 +64,14 @@ var streamModule = (function () {
         //Image.
         stompClient.subscribe(videoTopic + sala, function (data) {
             const i = document.querySelector('.external-media');
-            //i.src = data.body;
+            i.src = data.body;
         });
         var message = {
             sender: user,
             content: "Join",
             type: 'Join'
         };
-        stompClient.send("/app" + sala + ".newUser", {}, JSON.stringify(message));
+        stompClient.send(chatsender + sala + ".newUser", {}, JSON.stringify(message));
     }
 
     function sendSreenSnapshot() {
@@ -88,9 +89,9 @@ var streamModule = (function () {
                         canvas.width = video.videoWidth;
                         canvas.height = video.videoHeight;
                         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                        const imageData = canvas.toDataURL("image/jpeg", 0.3);
+                        const imageData = canvas.toDataURL("image/jpeg", 0.4);
                         stompClient.send(videoTopic + sala, {}, imageData);
-                    }, 1000);
+                    }, 10);
                 }).catch(function (err) {
                     console.log(err.message);
                 });
@@ -102,7 +103,7 @@ var streamModule = (function () {
             content: document.querySelector('#btn-input').value,
             type: 'Message'
         };
-        stompClient.send("/app" + sala, {}, JSON.stringify(message));
+        stompClient.send(chatsender + sala, {}, JSON.stringify(message));
         document.querySelector('#btn-input').value = "";
     }
 
