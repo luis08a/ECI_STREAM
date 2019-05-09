@@ -66,9 +66,10 @@ public class RoomController {
     @PostMapping(consumes = "application/json")
     public ResponseEntity<?> createARoom(@RequestBody Room room) {
         try{
-            System.out.println(ss.createRoom(room));
+            Room temp = ss.createRoom(room);
+            System.out.println(temp);
             //System.out.println("crear en java aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-            return new ResponseEntity<>(ss.createRoom(room), HttpStatus.CREATED);
+            return new ResponseEntity<>(temp, HttpStatus.CREATED);
         } catch (Exception ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Refused to create the room. Invalid information",HttpStatus.FORBIDDEN);            

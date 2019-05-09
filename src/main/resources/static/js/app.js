@@ -13,7 +13,15 @@ var APIModule = (function () {
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
-            success: callback,
+            complete: callback,
+            success: function(data){
+                console.log(callback)
+                callback(data);
+                console.log(data);
+            },
+            error: function(data){
+                console.log("error: "+data);
+            },
             data: JSON.stringify(object)
         });
     }
@@ -26,7 +34,6 @@ var APIModule = (function () {
         getCurrentUserId: function (callback) {getRequest(usersUrl+"me",callback)},
         // Post to the api
         createRoom: function (object,callback) {postRequest(roomsUrl,object,callback)},
-        createRoom: function (object) {postRequest(roomsUrl,object)},
         joinInARoom: function (roomId,user) {
             postRequest(roomsUrl+roomId,user)
         },

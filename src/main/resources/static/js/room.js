@@ -22,20 +22,21 @@ var roomModule = (function () {
                 let room = { teacher: data, information: roomInfo };
                 console.log("entro al callback " + JSON.stringify(room));
                 APIModule.createRoom(room, function (data2) {
-                    console.log("datos createRoom " + JSON.stringify(data2));
-                    alert("datos del callback" + data2.val);
-                    var markup = "<tr><td>"
-                    + $("#title").val()
+                    console.log("datos createRoom " + data2);
+                    //alert("datos del callback" + data2.val);
+                    /*var markup = "<tr><td>"
+                    + data2.title
                     + "</td><td>"
-                    + $("#category").val()
+                    + data2.category
                     + "</td><td>"
                     + null
                     + "</td><td>"
-                    + $("#description").val()
+                    + data2.description
                     + "</td><td>"
-                    + '<button id="join" class="btn btn-default" onclick="roomModule.toRoom(' + value.id + ')">Join Room</button>'
+                    + '<button id="join" class="btn btn-default" onclick="roomModule.toRoom(' + data2.id + ')">Join Room</button>'
                     + "</td></tr>";
-
+                    $("#data").append(markup);*/
+                    getRooms();
                 })
                 console.log("termino el callback")
             });

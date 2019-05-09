@@ -117,6 +117,7 @@ var streamModule = (function () {
 
         if (message.type === 'Join') {
             message.content = message.sender + ' has joined to chat';
+            $("#data-users").append("<tr><td>" + message.sender + "</td></tr>");
         }
         /* image */
         var span = document.createElement('span');
