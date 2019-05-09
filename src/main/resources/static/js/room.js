@@ -92,7 +92,7 @@ var roomModule = (function () {
     function connectionSuccess(frame) {
         console.log('Connected: ' + frame);
         //chat
-        stompClient.subscribe("/topic/"+notification, onMessage);
+        stompClient.subscribe("/topic"+notification, onMessage);
         
         //stompClient.send("/app/"+notification , {}, JSON.stringify(message));
     }
@@ -101,10 +101,11 @@ var roomModule = (function () {
         var message = {           
             type: 'newRoom'
         };
-        stompClient.send("/app/"+notification, {}, JSON.stringify(message));
+        stompClient.send("/app"+notification, {}, JSON.stringify(message));
     }
 
     function onMessage(event) {
+        console.log(event.body)
         getRooms();
     }
 

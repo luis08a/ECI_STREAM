@@ -38,8 +38,8 @@ var APIModule = (function () {
         joinInARoom: function (roomId,user) {
             postRequest(roomsUrl+roomId,user)
         },
-        register: function (user) {
-            postRequest(usersUrl,user)
+        register: function (user,callback) {
+            postRequest(usersUrl,user,callback);
 
         }
     }

@@ -10,7 +10,7 @@ var registerModule=(function(){
         var passwordF = document.getElementById('password').value;
         
         var user = { name : nameF, email : emailF, password : passwordF,profile:null,rating:null};
-        APIModule.register(user);
+        APIModule.register(user, function(data){location.href = "/login";});
         //location.href = "/login"; 
     }
     return{
