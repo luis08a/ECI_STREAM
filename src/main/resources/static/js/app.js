@@ -13,11 +13,9 @@ var APIModule = (function () {
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
-            complete: callback,
+            //complete: callback,
             success: function(data){
-                console.log(callback)
                 callback(data);
-                console.log(data);
             },
             error: function(data){
                 console.log("error: "+data);

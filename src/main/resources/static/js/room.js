@@ -1,11 +1,10 @@
 
 var roomModule = (function () {
 
-    var notification = "/notification";
+    var notification = "/topic/notification";
 
     var currentUser;
     APIModule.getCurrentUserId(function (data) {
-        //console.log(data);
         currentUser = data;
     });
 
@@ -17,35 +16,19 @@ var roomModule = (function () {
                 keyWords: [],
                 description: $("#description").val()
             }
-            //console.log(currentUser)
             APIModule.getUserById(currentUser, function (data) {
                 let room = { teacher: data, information: roomInfo };
-                console.log("entro al callback " + JSON.stringify(room));
                 APIModule.createRoom(room, function (data2) {
-                    console.log("datos createRoom " + data2);
-                    //alert("datos del callback" + data2.val);
-                    /*var markup = "<tr><td>"
-                    + data2.title
-                    + "</td><td>"
-                    + data2.category
-                    + "</td><td>"
-                    + null
-                    + "</td><td>"
-                    + data2.description
-                    + "</td><td>"
-                    + '<button id="join" class="btn btn-default" onclick="roomModule.toRoom(' + data2.id + ')">Join Room</button>'
-                    + "</td></tr>";
-                    $("#data").append(markup);*/
-                    //getRooms();
                     sendMessage();
-                })
-                console.log("termino el callback")
+                    $("#category").val("");
+                    $("#title").val("");
+                    $("#description").val("");
+                    changeToRoom(data2.id);
+                });
             });
-
-            $("#category").val("");
-            $("#title").val("");
-            $("#description").val("");
         }
+        else
+            alert("A input is null");
     };
 
     var getRooms = function () {
@@ -90,22 +73,20 @@ var roomModule = (function () {
     };
 
     function connectionSuccess(frame) {
-        console.log('Connected: ' + frame);
-        //chat
-        stompClient.subscribe("/topic"+notification, onMessage);
-        
-        //stompClient.send("/app/"+notification , {}, JSON.stringify(message));
+        console.log('Connected: ' + frame);        
+        // public connection
+        stompClient.subscribe(notification, onMessage);                
     }
 
     function sendMessage() {
         var message = {           
             type: 'newRoom'
         };
-        stompClient.send("/app"+notification, {}, JSON.stringify(message));
+        stompClient.send(notification, {}, JSON.stringify(message));
     }
 
     function onMessage(event) {
-        console.log(event.body)
+        //console.log(event.body)
         getRooms();
     }
 
