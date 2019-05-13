@@ -93,7 +93,7 @@ var streamModule = (function () {
                         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
                         const imageData = canvas.toDataURL("image/jpeg", 0.4);
                         stompClient.send(videoTopic + sala, {}, imageData);
-                    }, 1000);
+                    }, 1000);   
                 }).catch(function (err) {
                     console.log(err.message);
                 });
