@@ -103,4 +103,16 @@ public class UserController {
             return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(value = "/meName", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserName() {
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String name = auth.getPrincipal().toString();
+            return new ResponseEntity<>(ss.findById(name).getName(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
+        }
+    }
 }

@@ -27,21 +27,23 @@ var streamModule = (function () {
 
     var getRoom = function () {
         APIModule.getRoomById(getUrlVars()['id'], function (data) {
-            $("#data-teacher").append(data.teacher.name);
+            $("#data-teacher").append("<tr><td>" + data.teacher.name + "</td></tr>");
             $(".title-room").html(data.information.title);
             getUsers(data.users);
         });
-        //setTimeout(getRoom, 1000);
     };
 
     var getUsers = function (data) {
-        data.forEach(value => {
-            $("#data-users").append("<tr><td>" + value.name + "</td></tr>");
-        });
+        console.log(data);
+        if (data != null){
+            data.forEach(value => {
+                $("#data-users").append("<tr><td>" + value.name + "</td></tr>");
+            });
+        }        
     };
 
     var wsConnect = function () {
-        APIModule.getCurrentUserId(function (data) {
+        APIModule.getCurrentUserName(function (data) {
             user = data;
             sala = getUrlVars()['id'];
             connectAndSubscribe();
@@ -117,7 +119,8 @@ var streamModule = (function () {
 
         if (message.type === 'Join') {
             message.content = message.sender + ' has joined to chat';
-            //$("#data-users").append("<tr><td>" + message.sender + "</td></tr>");
+            $("#data-users").html();
+            getUsers();
         }
         /* image */
         var span = document.createElement('span');

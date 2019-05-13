@@ -26,11 +26,12 @@ var APIModule = (function () {
     }
     return {
         // Get from the api
-        getUsers: function(callback){getRequest(usersUrl,callback)} ,
+        getUsers: function(callback){getRequest(usersUrl,callback)},
         getRooms: function(callback){getRequest(roomsUrl,callback)},
         getUserById: function (userId,callback) {getRequest(usersUrl+userId,callback)},
         getRoomById: function (roomId,callback) {getRequest(roomsUrl+roomId,callback)},
         getCurrentUserId: function (callback) {getRequest(usersUrl+"me",callback)},
+        getCurrentUserName: function (callback) {getRequest(usersUrl+"meName",callback)},
         // Post to the api
         createRoom: function (object,callback) {postRequest(roomsUrl,object,callback)},
         joinInARoom: function (roomId,user) {
