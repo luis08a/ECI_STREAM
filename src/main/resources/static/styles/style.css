@@ -135,12 +135,12 @@
 }
 
 .modal-content {
-    background-color: #FFFDEB;
+    background-color: #ffffff;
 }
 
 .modal-header {
     font-family: 'Roboto', cursive;
-    color: #fff;
+    color: #000;
 }
 
 .modal-body {
