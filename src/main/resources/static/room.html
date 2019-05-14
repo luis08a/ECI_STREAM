@@ -6,6 +6,8 @@
     <title>Eci Stream</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/logo-web-eci-stream.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
@@ -99,8 +101,32 @@
             </div>
         </div>
     </div>
-    <a class="flotante btn-floating btn-lg blue-gradient" onclick="streamModule.sendScreen()"><i
-            class="fas fa-star"></i></a>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">dehaze</i>
+        </a>
+        <ul>
+            <li><a class="btn-floating blue" onclick="streamModule.sendScreen()"><i
+                        class="material-icons">aspect_ratio</i></a></li>
+            <li><a class="btn-floating green darken-1" onclick="streamModule.sendCamera()"><i
+                        class="material-icons">camera_alt</i></a></li>
+        </ul>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems, options);
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems, {
+                direction: 'left',
+                hoverEnabled: false
+            });
+        });
+    </script>
 </body>
 <script type="text/javascript">
     document.querySelector('#btn-chat').addEventListener('click', function (event) { streamModule.send(); });

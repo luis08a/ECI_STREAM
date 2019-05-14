@@ -1,8 +1,12 @@
 var streamModule = (function () {
-
     navigator.mediaDevices.getDisplayMedia = navigator.mediaDevices.getDisplayMedia ||
         navigator.mediaDevices.webkitGetDisplayMedia ||
         navigator.mediaDevices.mozGetDisplayMedia ||
+        null;
+    var cameraActive = false;
+    navigator.mediaDevices.getUserMedia = navigator.mediaDevices.getUserMedia ||
+        navigator.mediaDevices.webkitGetUserMedia ||
+        navigator.mediaDevices.mozGetUserMedia ||
         null;
     var sala = null;
     var user = null;
@@ -35,11 +39,11 @@ var streamModule = (function () {
 
     var getUsers = function (data) {
         console.log(data);
-        if (data != null){
+        if (data != null) {
             data.forEach(value => {
                 $("#data-users").append("<tr><td>" + value.name + "</td></tr>");
             });
-        }        
+        }
     };
 
     var wsConnect = function () {
@@ -93,7 +97,30 @@ var streamModule = (function () {
                         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
                         const imageData = canvas.toDataURL("image/jpeg", 0.4);
                         stompClient.send(videoTopic + sala, {}, imageData);
-                    }, 1000);   
+                    }, 1000);
+                }).catch(function (err) {
+                    console.log(err.message);
+                });
+    }
+    function sendCameraSnapshot() {
+        const video = document.querySelector('.local-media');
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(
+                function (stream) {
+                    video.srcObject = stream;
+                    let interval = setInterval(function () {
+                        if (!cameraActive) {
+                            stream.active = false;
+                            clearInterval(interval);
+                        }
+                        canvas.width = video.videoWidth;
+                        canvas.height = video.videoHeight;
+                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                        const imageData = canvas.toDataURL("image/jpeg", 0.4);
+                        stompClient.send(videoTopic + sala, {}, imageData);
+                    }, 500);
                 }).catch(function (err) {
                     console.log(err.message);
                 });
@@ -164,6 +191,10 @@ var streamModule = (function () {
         },
         send: function () {
             sendMessage();
+        },
+        sendCamera: function () {
+            if (cameraActive) { cameraActive = false; }
+            else { cameraActive=true;sendCameraSnapshot(); }
         },
         sendScreen: function () {
             sendSreenSnapshot();
