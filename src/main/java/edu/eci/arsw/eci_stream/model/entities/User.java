@@ -19,7 +19,7 @@ import org.springframework.security.access.prepost.PostFilter;
 @Entity
 @Table(name = "users")
 public class User {
-  
+
     @NotNull
     private String username;
     @NotNull
@@ -29,7 +29,7 @@ public class User {
     @NotNull
     private String password;
     private String profile;
-    
+
     private String rating;
 
     public User(String name, String email, String pass, String pro, String f) {
@@ -37,7 +37,7 @@ public class User {
         this.email = email;
         this.password = pass;
         this.profile = pro;
-        this.rating=f   ;
+        this.rating = f;
     }
 
     public User(String name, String email, String pass) {
@@ -45,9 +45,8 @@ public class User {
         this.email = email;
         this.password = pass;
         this.profile = null;
-        this.rating=null;
+        this.rating = null;
     }
-
 
     /**
      * @return the rating
@@ -80,7 +79,7 @@ public class User {
     private User() {
     }
 
-	/**
+    /**
      * @return the name
      */
     public String getName() {
@@ -108,21 +107,26 @@ public class User {
         this.username = name;
     }
 
-    
-	public String getPassword() {
-		return password;
-	}
-    
-	public void setPassword(String pass) {
-		password = pass;
-	}
-    
-	public Object getPasswordConfirm() {
-		return password;
+    public String getPassword() {
+        return password;
     }
-    
-    public String toString(){
-        return username+password+email+profile+rating;
+
+    public void setPassword(String pass) {
+        password = pass;
     }
-    
+
+    public Object getPasswordConfirm() {
+        return password;
+    }
+
+    public String toString() {
+        return username + password + email + profile + rating;
+    }
+
+    public boolean equals(User u) {
+        if (this.email.equals(u.getEmail()) && this.username.equals(u.getName())) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import edu.eci.arsw.eci_stream.model.entities.Room;
-import edu.eci.arsw.eci_stream.model.entities.RoomInfo;
 import edu.eci.arsw.eci_stream.model.entities.User;
 import edu.eci.arsw.eci_stream.persistence.PersistenceException;
 import edu.eci.arsw.eci_stream.persistence.StreamPersistence;
@@ -55,7 +54,10 @@ public class InMemoryStreamPersistence implements StreamPersistence {
     @Override
     public void joinInARoom(User u, long roomId) throws PersistenceException {
         if (mockRooms.containsKey(roomId)) {
-            mockRooms.get(roomId).addUser(u);
+            Room r = mockRooms.get(roomId);
+            if(!r.getTeacher().equals(u)){
+                r.addUser(u);
+            }
         } else {
             throw new PersistenceException("The room doesn´t exist");
         }

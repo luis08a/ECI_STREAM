@@ -8,7 +8,7 @@ var roomModule = (function () {
         currentUser = data;
     });
 
-    var createRoom = function () {        
+    var createRoom = function () {
         if ($("#category").val() != "" && $("#title").val() != "" && $("#description").val() != "") {
             let roomInfo = {
                 category: $("#category").val(),
@@ -60,8 +60,13 @@ var roomModule = (function () {
     }
 
     var changeToRoom = function (id) {
-        APIModule.joinInARoom(id, currentUser);
-        location.href = "/room?id=" + id;
+        console.log(id)
+        APIModule.getUserById(currentUser, function (data) {
+            console.log(data)
+            APIModule.joinInARoom(id, data,
+                () => location.href = "/room?id=" + id
+            );
+        });
     }
 
     var connectAndSubscribe = function () {
@@ -73,20 +78,19 @@ var roomModule = (function () {
     };
 
     function connectionSuccess(frame) {
-        console.log('Connected: ' + frame);        
+        console.log('Connected: ' + frame);
         // public connection
-        stompClient.subscribe(notification, onMessage);                
+        stompClient.subscribe(notification, onMessage);
     }
 
     function sendMessage() {
-        var message = {           
+        var message = {
             type: 'newRoom'
         };
         stompClient.send(notification, {}, JSON.stringify(message));
     }
 
     function onMessage(event) {
-        //console.log(event.body)
         getRooms();
     }
 
